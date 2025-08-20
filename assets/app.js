@@ -1,12 +1,12 @@
-/* app.js — nav + secure links + scrollspy + cursor glow */
+/* app.js — nav + secure links + scrollspy + cursor glow + scroll progress/header compact + CTA */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
 
   // ===== XOR obfuscation =====
   function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
-  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7; 
-  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7; /
+  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7;
+  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7;
   const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7;
 
   function openDonate(){ window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener"); }
@@ -32,7 +32,7 @@
 
   // ===== Scrollspy (yellow chip on active) =====
   const spyLinks=[...document.querySelectorAll('[data-spy]')];
-  const sections=["#start","#about","#experience","#projects","#contact"]
+  const sections=["#start","#about","#experience","#projects","#contact","#cta"]
         .map(id=>document.querySelector(id)).filter(Boolean);
 
   if("IntersectionObserver" in window && sections.length){
@@ -75,8 +75,20 @@
     hero.style.setProperty("--my","50%");
   }
 
-  // ===== CTA / footer =====
+  // ===== Scroll progress + compact header =====
+  const docEl = document.documentElement;
+  const onScroll = () => {
+    const max = docEl.scrollHeight - docEl.clientHeight;
+    const p = max > 0 ? (window.scrollY / max) : 0;
+    docEl.style.setProperty('--scroll', p.toFixed(4));
+    if (topbar) topbar.classList.toggle('compact', window.scrollY > 80);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ===== CTA / footer / buttons =====
   const navDonate=document.getElementById("nav-donate");
+  const ctaInvite=document.getElementById("cta-invite");
   const gh=document.getElementById("btn-github");
   const em=document.getElementById("btn-mail");
   const em2=document.getElementById("btn-mail-2");
@@ -84,6 +96,7 @@
   const fm=document.getElementById("f-mail");
 
   if(navDonate) navDonate.addEventListener("click",openDonate);
+  if(ctaInvite) ctaInvite.addEventListener("click",openDonate);
   if(gh) gh.addEventListener("click",openGithub);
   if(em) em.addEventListener("click",openMail);
   if(em2) em2.addEventListener("click",openMail);
