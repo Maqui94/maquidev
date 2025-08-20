@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./assets/styles.css?v=8">
+  <link rel="stylesheet" href="./assets/styles.css?v=9">
 </head>
 <body>
   <a href="#inicio" class="skip">Saltar al contenido</a>
@@ -42,8 +42,8 @@
       </button>
       <nav id="navmenu" class="nav">
         <a href="#experiencia" data-spy>Experiencia</a>
-        <a href="#proyectos" data-spy>Proyectos</a>
-        <a href="#contacto"  data-spy>Contacto</a>
+        <a href="#proyectos"   data-spy>Proyectos</a>
+        <a href="#contacto"    data-spy>Contacto</a>
       </nav>
 
       <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invitar un café">☕ Invitar</button>
@@ -58,8 +58,11 @@
   <main class="wrap">
     <!-- ===== HERO ===== -->
     <section id="inicio" class="hero-full" aria-label="Hero principal">
-      <!-- Partículas (particles.js) -->
-      <div id="bg-particles" class="particles" aria-hidden="true"></div>
+      <!-- Confeti CSS-only -->
+      <div class="sparks" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
 
       <div class="hero-content">
         <h1 class="hero-title">
@@ -140,10 +143,7 @@
     </div>
   </footer>
 
-  <!-- particles.js (animación estable y ligera) -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
   <!-- App -->
-  <script src="./assets/app.js?v=8" defer></script>
-  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">Activa JavaScript para ver las animaciones.</div></noscript>
+  <script src="./assets/app.js?v=9" defer></script>
 </body>
 </html>
