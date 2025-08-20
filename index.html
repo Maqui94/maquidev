@@ -1,45 +1,217 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- ====== META ====== -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@maquidev · Proyectos + apoyar</title>
+  <meta name="description" content="Proyectos de IA y web de @maquidev. Enlaces rápidos y cómo invitar un café ☕.">
+  <meta name="theme-color" content="#FFD60A">
+  <meta property="og:title" content="@maquidev · Proyectos + apoyar">
+  <meta property="og:description" content="Proyectos de IA y web de @maquidev. Enlaces rápidos y cómo invitar un café ☕.">
+  <meta property="og:type" content="website">
+
+  <!-- ====== PALETA (amarillo marca) ======
+       Cambia aquí si quieres ajustar tonos.
+       - Fondo oscuro con brillos amarillos.
+       - Amarillos cálidos y vivos, con contraste alto. -->
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-         margin:0;background:#0f1115;color:#e7e9ee}
-    .wrap{max-width:720px;margin:0 auto;padding:28px}
-    h1{font-size:28px;margin:0 0 8px}
-    p{opacity:.9;line-height:1.55}
-    .card{background:#151821;border:1px solid #242836;border-radius:16px;padding:18px 20px;margin:14px 0}
-    a.btn{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid #3a4153;
-          text-decoration:none;color:#e7e9ee}
-    .primary{background:#2a66ff;border-color:#2a66ff}
-    ul{padding-left:18px;margin:10px 0}
-    .foot{opacity:.7;font-size:14px;margin-top:24px}
+    :root{
+      /* Base */
+      --bg-0:#0b0d12;      /* fondo principal */
+      --bg-1:#11151c;      /* tarjetas / bloques */
+      --bg-2:#171c25;      /* hover */
+      --fg-0:#f6f7fb;      /* texto principal */
+      --fg-1:#c7cbd6;      /* texto secundario */
+
+      /* Amarillos (marca) */
+      --y-50:#fff8cc;
+      --y-100:#ffe97a;
+      --y-200:#ffe04a;
+      --y-300:#ffd60a;     /* acento principal */
+      --y-400:#ffc300;
+      --y-500:#ffb300;
+      --y-600:#f39c00;
+
+      /* Gradientes y luces */
+      --g-hero: radial-gradient(1200px 600px at 10% -10%, rgba(255,214,10,.18), transparent 55%),
+                radial-gradient(900px 500px at 90% 0%, rgba(255,195,0,.14), transparent 60%),
+                radial-gradient(700px 400px at 50% 100%, rgba(255,179,0,.1), transparent 60%);
+      --g-btn: linear-gradient(135deg, var(--y-300), var(--y-500));
+      --g-btn-hover: linear-gradient(135deg, var(--y-100), var(--y-300));
+      --ring: 0 0 0 6px rgba(255,214,10,.12);
+      --border: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* Reset mínimo y tipografías del sistema */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--fg-0); background:var(--bg-0); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
+      background-image: var(--g-hero), linear-gradient(180deg, #0b0d12 0%, #0b0d12 100%);
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:820px; margin:0 auto; padding:28px;}
+
+    /* Cabecera / Hero */
+    .hero{
+      display:flex; align-items:center; gap:18px; padding:18px; border-radius:20px;
+      background:rgba(255,214,10,.04); border:var(--border);
+      backdrop-filter:saturate(120%) blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .avatar{
+      width:72px; height:72px; border-radius:18px; overflow:hidden; flex:0 0 auto;
+      border:1px solid rgba(255,214,10,.25);
+      box-shadow: var(--ring);
+      background:linear-gradient(135deg, rgba(255,214,10,.2), rgba(255,179,0,.08));
+      display:grid; place-items:center; font-weight:700; color:#0a0a0a;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+    .avatar span{
+      display:block; width:100%; height:100%; background:var(--g-btn); color:#0a0a0a;
+      display:grid; place-items:center; font-size:28px;
+    }
+
+    .hero h1{margin:0; font-size:26px; letter-spacing:.2px}
+    .hero p{margin:4px 0 0; color:var(--fg-1)}
+
+    .tags{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+    .tag{
+      font-size:13px; padding:6px 10px; border-radius:999px; color:#0a0a0a; font-weight:600;
+      background:linear-gradient(180deg, var(--y-100), var(--y-300));
+      border:1px solid rgba(0,0,0,.08);
+    }
+
+    /* Botones */
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 16px; border-radius:14px; font-weight:700; transition:.18s ease;
+      border:var(--border); background:var(--bg-1);
+    }
+    .btn:hover{background:var(--bg-2); transform:translateY(-1px)}
+    .btn-primary{
+      background:var(--g-btn); color:#0a0a0a; border:1px solid rgba(0,0,0,.12);
+      box-shadow: 0 8px 20px rgba(255,214,10,.35);
+    }
+    .btn-primary:hover{background:var(--g-btn-hover); box-shadow:0 10px 24px rgba(255,214,10,.45)}
+    .btn .ico{display:inline-flex}
+
+    /* Secciones */
+    .section{
+      margin-top:24px; padding:18px; border-radius:18px; background:rgba(255,255,255,.02); border:var(--border);
+    }
+    .section h2{margin:0 0 8px; font-size:20px}
+    .muted{color:var(--fg-1)}
+
+    /* Lista de proyectos */
+    .projects{display:grid; gap:12px}
+    .card{
+      background:var(--bg-1); border:var(--border); border-radius:16px; padding:14px 16px; transition:.18s;
+    }
+    .card:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.28)}
+    .card h3{margin:0 0 6px; font-size:18px}
+    .card p{margin:0 0 10px; color:var(--fg-1)}
+    .chip{
+      display:inline-block; font-size:12px; font-weight:700; color:#0a0a0a; padding:6px 10px; border-radius:999px;
+      background:linear-gradient(180deg, var(--y-100), var(--y-300)); border:1px solid rgba(0,0,0,.1)
+    }
+
+    /* Footer */
+    .foot{margin:26px 0 8px; color:var(--fg-1); font-size:14px; text-align:center}
+
+    /* Responsive */
+    @media (max-width:600px){
+      .hero{flex-direction:column; align-items:flex-start}
+      .avatar{width:64px; height:64px}
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <h1>@maquidev</h1>
-    <p>Construyo proyectos con IA y web. Aquí tienes lo importante en un clic.</p>
+    <!-- ====== HERO ====== -->
+    <header class="hero" aria-label="Cabecera">
+      <div class="avatar" aria-label="Avatar de @maquidev">
+        <!-- Reemplaza por tu foto subida al repo: <img src="./avatar.jpg" alt="Foto de @maquidev"> -->
+        <span>M</span>
+      </div>
+      <div>
+        <h1>@maquidev</h1>
+        <p class="muted">IA, web y ideas claras. Proyectos reales y recursos que ahorran tiempo.</p>
+        <div class="tags">
+          <span class="tag">IA</span>
+          <span class="tag">Dev</span>
+          <span class="tag">Web</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://revolut.me/maquidev" target="_blank" rel="noopener" aria-label="Invitar un café">
+            <span class="ico">☕</span> Invitar un café
+          </a>
+          <a class="btn" href="https://github.com/maquidev" target="_blank" rel="noopener" aria-label="Ver GitHub">
+            <!-- GitHub SVG -->
+            <span class="ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.09-.74.09-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.8.42-1.33.77-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.23-.13-.31-.54-1.56.12-3.24 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.23 0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/>
+              </svg>
+            </span>
+            GitHub
+          </a>
+          <a class="btn" href="mailto:hola@maquidev.com" aria-label="Enviar email">
+            ✉️ Contacto
+          </a>
+        </div>
+      </div>
+    </header>
 
-    <section class="card">
-      <h2>Proyectos</h2>
-      <ul>
-        <li><a href="https://tu-enlace-proyecto-1.com" target="_blank" rel="noopener">Proyecto 1</a> — qué hace y para quién.</li>
-        <li><a href="https://tu-enlace-proyecto-2.com" target="_blank" rel="noopener">Proyecto 2</a> — impacto y utilidad.</li>
-        <li><a href="https://tu-enlace-proyecto-3.com" target="_blank" rel="noopener">Proyecto 3</a> — estado y hoja de ruta.</li>
-      </ul>
-      <p><a class="btn" href="https://github.com/maquidev" target="_blank" rel="noopener">Ver GitHub</a></p>
+    <!-- ====== PROYECTOS ====== -->
+    <section class="section" aria-labelledby="titulo-proyectos">
+      <h2 id="titulo-proyectos">Proyectos</h2>
+      <p class="muted">Selección rápida. Haz clic para ver cada uno.</p>
+      <div class="projects">
+        <!-- Proyecto 1 -->
+        <article class="card">
+          <h3>Prompt Lab · Instagram (IA)</h3>
+          <p>Plantillas y flujos para crear contenido rápido y claro. Ideal para perfiles nuevos.</p>
+          <div class="actions">
+            <a class="btn" href="https://tu-enlace-proyecto-1.com" target="_blank" rel="noopener">Ver proyecto</a>
+            <span class="chip">IA</span>
+          </div>
+        </article>
+        <!-- Proyecto 2 -->
+        <article class="card">
+          <h3>Generador de tests desde PDF</h3>
+          <p>Convierte PDFs en preguntas tipo test en JSON. Ahorra horas de estudio.</p>
+          <div class="actions">
+            <a class="btn" href="https://tu-enlace-proyecto-2.com" target="_blank" rel="noopener">Ver proyecto</a>
+            <span class="chip">Dev</span>
+          </div>
+        </article>
+        <!-- Proyecto 3 -->
+        <article class="card">
+          <h3>MeetFit · Quedadas deportivas</h3>
+          <p>App para crear eventos, perfiles y notificaciones. Flutter + Firebase.</p>
+          <div class="actions">
+            <a class="btn" href="https://tu-enlace-proyecto-3.com" target="_blank" rel="noopener">Ver proyecto</a>
+            <span class="chip">Web</span>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Apoyar</h2>
-      <p>Si mi trabajo te ayuda, puedes invitarme un café ☕ ¡Gracias!</p>
-      <p><a class="btn primary" href="https://revolut.me/maquidev" target="_blank" rel="noopener">Invitar un café</a></p>
+    <!-- ====== APOYO ====== -->
+    <section class="section" aria-labelledby="titulo-apoyar">
+      <h2 id="titulo-apoyar">Apoyar el proyecto</h2>
+      <p class="muted">Si te ayuda mi trabajo, puedes invitarme un café. Gracias por el impulso ☕</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://revolut.me/maquidev" target="_blank" rel="noopener">Invitar un café</a>
+        <a class="btn" href="https://notion.so" target="_blank" rel="noopener">Más recursos</a>
+      </div>
     </section>
 
     <p class="foot">© 2025 @maquidev · Enlaces y recursos</p>
   </main>
 </body>
 </html>
+
