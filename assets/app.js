@@ -1,13 +1,13 @@
-/* app.js — NAV + enlaces seguros + particles.js + scrollspy */
+/* app.js — NAV + enlaces seguros + scrollspy + cursor glow */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
 
   // ===== Ofuscación XOR =====
   function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
-  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7; //
-  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7; // 
-  const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7; // 
+  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7; 
+  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7; 
+  const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7;
 
   function openDonate(){ window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener"); }
   function openGithub(){ window.open(["https","://","github",".","com","/",xorDecode(GH_USER,GH_KEY)].join(""),"_blank","noopener"); }
@@ -30,7 +30,7 @@
     });
   });
 
-  // ===== Scrollspy (gradiente amarillo en nav activo) =====
+  // ===== Scrollspy (chip amarillo) =====
   const spyLinks=[...document.querySelectorAll('[data-spy]')];
   const sections=["#inicio","#experiencia","#proyectos","#contacto"].map(id=>document.querySelector(id)).filter(Boolean);
   if("IntersectionObserver" in window && sections.length){
@@ -43,6 +43,9 @@
       });
     },{rootMargin:"-40% 0px -50% 0px",threshold:[0,0.25,0.6,1]});
     sections.forEach(sec=>io.observe(sec));
+  } else {
+    // fallback mínimo
+    spyLinks[0]?.classList.add('active');
   }
 
   // ===== Reveal on scroll =====
@@ -54,43 +57,25 @@
     revealEls.forEach(el=>rio.observe(el));
   } else { revealEls.forEach(el=>el.classList.add("in")); }
 
-  // ===== Partículas con particles.js (muy estable en GitHub Pages) =====
-  function initParticles(){
-    const containerId="bg-particles";
-    const el=document.getElementById(containerId);
-    if(!el || typeof window.particlesJS !== "function") return;
-
-    window.particlesJS(containerId, {
-      particles: {
-        number: { value: 120, density: { enable: true, value_area: 900 } },
-        color: { value: ["#FFD60A","#FFB300","#FFE97A","#203040","#7C2222","#263D5E"] },
-        shape: { type: ["edge","circle","polygon"], polygon: { nb_sides: 4 } },
-        opacity: { value: 0.45, random: true },
-        size: { value: 5, random: true },
-        line_linked: { enable: false },
-        move: {
-          enable: true, speed: 1.2, direction: "none", random: false,
-          straight: false, out_mode: "out", attract: { enable: false }
-        }
-      },
-      interactivity: {
-        detect_on: "window",
-        events: {
-          onhover: { enable: true, mode: "repulse" },   // huye del ratón (efecto visible)
-          onclick: { enable: false, mode: "push" },
-          resize: true
-        },
-        modes: { repulse: { distance: 120, duration: 0.2 } }
-      },
-      retina_detect: true
-    });
+  // ===== Cursor glow (mueve el foco del radial-gradient en el hero) =====
+  const hero=document.querySelector(".hero-full");
+  if(hero){
+    let raf;
+    function update(e){
+      const rect=hero.getBoundingClientRect();
+      const x=(e.clientX - rect.left)+"px";
+      const y=(e.clientY - rect.top)+"px";
+      hero.style.setProperty("--mx", x);
+      hero.style.setProperty("--my", y);
+    }
+    const onMove=(e)=>{ cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>update(e)); };
+    hero.addEventListener("pointermove", onMove);
+    // posición inicial (centro)
+    hero.style.setProperty("--mx","50%");
+    hero.style.setProperty("--my","50%");
   }
 
-  // Espera al load (para asegurar que el CDN está disponible)
-  if (document.readyState === "complete") initParticles();
-  else window.addEventListener("load", initParticles);
-
-  // ===== Botones/CTA/Footer =====
+  // ===== CTA/Footer =====
   const navDonate=document.getElementById("nav-donate");
   const gh=document.getElementById("btn-github");
   const em=document.getElementById("btn-mail");
