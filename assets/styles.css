@@ -102,14 +102,30 @@ a{color:inherit; text-decoration:none}
 .hero-title{ font-size:clamp(46px,9vw,120px); font-weight:800; line-height:1.05; letter-spacing:-.02em; margin:0 0 18px }
 .brand-grad{ background:linear-gradient(90deg,#fff2a6 0%,var(--y-300) 40%,var(--y-500) 100%); -webkit-background-clip:text; background-clip:text; color:transparent }
 
-/* sparks */
+/* Confetti base */
 .sparks{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none}
-.sparks span{position:absolute; width:10px; height:10px; background:rgba(255,214,10,.18); border-radius:2px; animation:drift var(--dur) linear infinite; transform:translateY(-120%); opacity:.7}
+.sparks span{
+  position:absolute; width:10px; height:10px; background:rgba(255,214,10,.18);
+  border-radius:2px; transform:translateY(-120%); opacity:.75;
+  /* ↓ 40% más rápido */
+  animation:drift calc(var(--dur) * .6) linear infinite;
+}
 @keyframes drift{to{transform:translateY(120vh) rotate(360deg)}}
-.sparks span:nth-child(1){left:6%;--dur:18s} .sparks span:nth-child(2){left:18%;--dur:22s} .sparks span:nth-child(3){left:28%;--dur:20s}
-.sparks span:nth-child(4){left:38%;--dur:25s} .sparks span:nth-child(5){left:48%;--dur:19s} .sparks span:nth-child(6){left:58%;--dur:21s}
-.sparks span:nth-child(7){left:68%;--dur:24s} .sparks span:nth-child(8){left:78%;--dur:20s} .sparks span:nth-child(9){left:86%;--dur:23s}
-.sparks span:nth-child(10){left:12%;--dur:26s} .sparks span:nth-child(11){left:54%;--dur:27s} .sparks span:nth-child(12){left:92%;--dur:22s}
+
+/* Distribución y duraciones: se repite cada 12 elementos,
+   así puedes tener 24, 36, 48... spans sin añadir más CSS */
+.sparks span:nth-child(12n+1){ left:6%;  --dur:12s}
+.sparks span:nth-child(12n+2){ left:14%; --dur:13s}
+.sparks span:nth-child(12n+3){ left:22%; --dur:11s}
+.sparks span:nth-child(12n+4){ left:30%; --dur:14s}
+.sparks span:nth-child(12n+5){ left:38%; --dur:12s}
+.sparks span:nth-child(12n+6){ left:46%; --dur:10s}
+.sparks span:nth-child(12n+7){ left:54%; --dur:13s}
+.sparks span:nth-child(12n+8){ left:62%; --dur:11s}
+.sparks span:nth-child(12n+9){ left:70%; --dur:12s}
+.sparks span:nth-child(12n+10){left:78%; --dur:14s}
+.sparks span:nth-child(12n+11){left:86%; --dur:11s}
+.sparks span:nth-child(12n+12){left:92%; --dur:13s}
 
 /* Scroll */
 .scroll-indicator{ position:absolute; left:50%; bottom:22px; transform:translateX(-50%); display:flex; align-items:center; gap:8px; padding:8px 12px; color:var(--fg-1); opacity:.95 }
