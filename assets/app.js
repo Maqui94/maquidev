@@ -1,13 +1,13 @@
-/* app.js — NAV + enlaces seguros + partículas (tsParticles) + scrollspy */
+/* app.js — NAV + enlaces seguros + particles.js + scrollspy */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
 
-  // ===== Ofuscación XOR (email, revolut, github) =====
+  // ===== Ofuscación XOR =====
   function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
-  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7;
-  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7;
-  const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7;
+  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7; //
+  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7; // 
+  const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7; // 
 
   function openDonate(){ window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener"); }
   function openGithub(){ window.open(["https","://","github",".","com","/",xorDecode(GH_USER,GH_KEY)].join(""),"_blank","noopener"); }
@@ -30,7 +30,7 @@
     });
   });
 
-  // ===== Scrollspy → aplica "active" (chip amarillo) =====
+  // ===== Scrollspy (gradiente amarillo en nav activo) =====
   const spyLinks=[...document.querySelectorAll('[data-spy]')];
   const sections=["#inicio","#experiencia","#proyectos","#contacto"].map(id=>document.querySelector(id)).filter(Boolean);
   if("IntersectionObserver" in window && sections.length){
@@ -54,39 +54,41 @@
     revealEls.forEach(el=>rio.observe(el));
   } else { revealEls.forEach(el=>el.classList.add("in")); }
 
-  // ===== Partículas con tsParticles (estable y visible) =====
+  // ===== Partículas con particles.js (muy estable en GitHub Pages) =====
   function initParticles(){
-    const container=document.getElementById("bg-particles");
-    if(!container || !window.tsParticles) return;
+    const containerId="bg-particles";
+    const el=document.getElementById(containerId);
+    if(!el || typeof window.particlesJS !== "function") return;
 
-    window.tsParticles.load({
-      id:"bg-particles",
-      options:{
-        fullScreen:{ enable:false },
-        background:{ color:{ value:"transparent" } },
-        detectRetina:true,
-        particles:{
-          number:{ value: 90, density:{ enable:true, area:800 } },
-          color:{ value:["#FFD60A","#FFB300","#FFE97A","#203040","#7C2222","#263D5E"] },
-          shape:{ type:["square","circle","polygon"], options:{ polygon:{ sides:4 } } },
-          opacity:{ value:{ min:0.25, max:0.55 } },
-          size:{ value:{ min:3, max:8 } },
-          rotate:{ value:{ min:0, max:360 }, direction:"random", animation:{ enable:true, speed:5 } },
-          move:{
-            enable:true, speed:0.6, direction:"none", outModes:{ default:"out" },
-            straight:false, random:false
-          }
-        },
-        interactivity:{
-          detectsOn:"window",
-          events:{ onHover:{ enable:true, mode:["attract"] }, resize:true },
-          modes:{ attract:{ distance:120, duration:0.2, factor:1 } }
+    window.particlesJS(containerId, {
+      particles: {
+        number: { value: 120, density: { enable: true, value_area: 900 } },
+        color: { value: ["#FFD60A","#FFB300","#FFE97A","#203040","#7C2222","#263D5E"] },
+        shape: { type: ["edge","circle","polygon"], polygon: { nb_sides: 4 } },
+        opacity: { value: 0.45, random: true },
+        size: { value: 5, random: true },
+        line_linked: { enable: false },
+        move: {
+          enable: true, speed: 1.2, direction: "none", random: false,
+          straight: false, out_mode: "out", attract: { enable: false }
         }
-      }
+      },
+      interactivity: {
+        detect_on: "window",
+        events: {
+          onhover: { enable: true, mode: "repulse" },   // huye del ratón (efecto visible)
+          onclick: { enable: false, mode: "push" },
+          resize: true
+        },
+        modes: { repulse: { distance: 120, duration: 0.2 } }
+      },
+      retina_detect: true
     });
   }
-  // espera a que el script CDN esté listo (viene antes en el HTML y con defer)
-  if (document.readyState === "complete") initParticles(); else window.addEventListener("load", initParticles);
+
+  // Espera al load (para asegurar que el CDN está disponible)
+  if (document.readyState === "complete") initParticles();
+  else window.addEventListener("load", initParticles);
 
   // ===== Botones/CTA/Footer =====
   const navDonate=document.getElementById("nav-donate");
