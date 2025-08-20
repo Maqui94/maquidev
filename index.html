@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./assets/styles.css?v=13" />
+  <link rel="stylesheet" href="./assets/styles.css?v=14" />
 </head>
 <body>
   <a href="#start" class="skip">Skip to content</a>
@@ -60,39 +60,37 @@
   <main class="wrap">
     <!-- ===== HERO ===== -->
     <section id="start" class="hero-full" aria-label="Hero">
-     <div class="sparks" aria-hidden="true">
-  <!-- 1–12 -->
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-  <!-- 13–24 -->
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-  <!-- 25–36 -->
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-       <span></span><span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-</div>
+      <div class="sparks" aria-hidden="true">
+        <!-- confetti spans (puedes reducir o aumentar sin tocar CSS) -->
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
 
-       <div class="hero-grid">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="brand-grad">Developer</span><br>& Designer
-      </h1>
-      <p class="hero-sub muted">
-        Hi, I'm Adrián Maquirriain — creative developer and AI video creator.
-        I build everyday helpful apps and entertainment content.
-      </p>
-    </div>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="brand-grad">Developer</span><br>& Designer
+          </h1>
+          <p class="hero-sub muted">
+            Hi, I'm Adrián Maquirriain — creative developer and AI video creator.
+            I build everyday helpful apps and entertainment content.
+          </p>
+        </div>
 
-    <figure class="hero-ill">
-      <img
-        src="./assets/maquidevlanding.png"
-        alt="Cartoon illustration of Maquidev at the desk"
-        width="768" height="1152"
-        loading="eager" decoding="async">
-    </figure>
-  </div>
+        <figure class="hero-ill">
+          <img
+            src="./assets/maquidevlanding.png"
+            alt="Cartoon illustration of Maquidev at the desk"
+            width="768" height="1152"
+            loading="eager" decoding="async">
+        </figure>
+      </div>
 
       <a class="scroll-indicator" href="#about" aria-label="Scroll to explore">
         <span>Scroll to explore</span>
@@ -211,46 +209,63 @@
 
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="section section-contact" aria-labelledby="t-contact" data-reveal>
-  <div class="contact-grid">
-    <div class="contact-text">
-      <h2 id="t-contact" class="h2">Contact</h2>
-      <p class="muted">DMs are open. Email works too.</p>
-      <div class="actions">
-        <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer">Discord</a>
-        <button id="btn-mail-2" class="btn" type="button">✉️ Email</button>
-      </div>
-    </div>
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h2 id="t-contact" class="h2">Contact</h2>
+          <p class="muted">DMs are open. Email works too.</p>
 
-    <!-- NUEVO: ilustración a la derecha -->
-    <figure class="contact-ill">
-      <img
-        src="./assets/maquidev-contacta.png"
-        alt="Cartoon illustration for contact"
-        width="640" height="640"
-        loading="lazy" decoding="async">
-    </figure>
-  </div>
-</section>
+          <!-- Redes + iconos -->
+          <div class="actions socials">
+            <a class="btn" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer">
+              <i class="icon" data-lucide="linkedin"></i> LinkedIn
+            </a>
+            <button class="btn" id="btn-github" type="button">
+              <i class="icon" data-lucide="github"></i> GitHub
+            </button>
+            <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">
+              <i class="icon" data-lucide="instagram"></i> Instagram
+            </a>
+            <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer">
+              <i class="icon" data-lucide="message-circle"></i> Discord
+            </a>
+            <button id="btn-mail-2" class="btn" type="button">
+              <i class="icon" data-lucide="mail"></i> Email
+            </button>
+          </div>
+        </div>
+
+        <figure class="contact-ill">
+          <img
+            src="./assets/maquidev-contacta.png"
+            alt="Cartoon illustration for contact"
+            width="640" height="640"
+            loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="inner">
       <div>© <span id="y"></span>
         <a class="brand-link" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">@maquidev</a>
-        · Links & resources · <a href="#start" class="toplink">Back to top ↑</a>
+        · <a href="#start" class="toplink">Back to top ↑</a>
       </div>
-      <nav>
-        <a id="f-github" class="link" href="#" role="link" aria-label="GitHub">GitHub</a>
-        <a id="f-mail" class="link" href="#" role="link" aria-label="Email">Contact</a>
-        <a class="link" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer" aria-label="Discord">Discord</a>
+
+      <!-- Solo iconos -->
+      <nav class="foot-socials" aria-label="Social links">
+        <a class="link icon-only" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="icon" data-lucide="linkedin"></i></a>
+        <a id="f-github" class="link icon-only" href="#" role="link" title="GitHub" aria-label="GitHub"><i class="icon" data-lucide="github"></i></a>
+        <a class="link icon-only" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="icon" data-lucide="instagram"></i></a>
+        <a class="link icon-only" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener" title="Discord" aria-label="Discord"><i class="icon" data-lucide="message-circle"></i></a>
+        <a id="f-mail" class="link icon-only" href="#" role="link" title="Email" aria-label="Email"><i class="icon" data-lucide="mail"></i></a>
       </nav>
     </div>
   </footer>
 
-  <!-- Icons (Lucide) -->
+  <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <!-- App -->
-  <script src="./assets/app.js?v=13" defer></script>
+  <script src="./assets/app.js?v=14" defer></script>
 </body>
 </html>
