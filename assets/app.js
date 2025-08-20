@@ -1,4 +1,4 @@
-/* app.js — nav + secure links + scrollspy + cursor glow + scroll progress/header compact */
+/* app.js — nav + secure links + scrollspy + cursor glow + scroll progress/header compact*/
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
