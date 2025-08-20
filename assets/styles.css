@@ -136,8 +136,8 @@ footer a.link:hover{text-decoration:underline}
 .toplink:hover{text-decoration:underline}
 
 /* Reveal on scroll */
-[data-reveal]{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
-[data-reveal].in{opacity:1; transform:none}
+.js [data-reveal]{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
+.js [data-reveal].in{opacity:1; transform:none}
 
 /* Anclas para nav fijo */
 #inicio, #experiencia, #proyectos, #contacto { scroll-margin-top: 90px; }
