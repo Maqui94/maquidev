@@ -10,7 +10,7 @@
   <meta property="og:description" content="Proyectos reales, recursos útiles y cómo invitar un café ☕.">
   <meta property="og:type" content="website">
 
-  <!-- Favicon / icono M -->
+  <!-- Iconos -->
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="./assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="alternate icon" href="./assets/favicon-16.png" sizes="16x16" type="image/png">
@@ -19,75 +19,65 @@
   <meta name="msapplication-TileColor" content="#0b0d12">
 
   <!-- Preloads -->
-  <link rel="preload" as="image" href="./assets/avatar.webp">
   <link rel="preload" as="image" href="./assets/maquidev_bg.svg">
 
-  <!-- Fuentes (marca y textos) -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Bebas Neue = logo/brand · Space Grotesk = títulos · Inter = texto -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="./assets/styles.css?v=4">
 </head>
 <body>
   <a href="#inicio" class="skip">Saltar al contenido</a>
 
-  <!-- ===== NAV superior estilo portfolio ===== -->
+  <!-- ===== NAV ===== -->
   <header class="topbar" role="navigation" aria-label="Principal">
     <div class="topbar-inner">
-      <!-- Logo M + palabra MAQUIDEV -->
       <a href="#inicio" class="brand" aria-label="Ir al inicio">
         <img class="brand-mark" src="./assets/favicon.svg" alt="" width="28" height="28" decoding="async" loading="lazy">
         <span class="brand-name">MAQUIDEV</span>
       </a>
 
-      <!-- Menú centrado -->
       <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navmenu">
         <span></span><span></span><span></span>
       </button>
       <nav id="navmenu" class="nav">
         <a href="#experiencia" data-spy>Experiencia</a>
         <a href="#proyectos" data-spy>Proyectos</a>
-        <a href="#contacto"   data-spy>Contacto</a>
+        <a href="#contacto" data-spy>Contacto</a>
       </nav>
 
-      <!-- CTA único -->
       <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invitar un café">☕ Invitar</button>
     </div>
   </header>
 
-  <!-- Fondo animado suave -->
+  <!-- Fondo general + orbs -->
   <div class="orbs" aria-hidden="true">
     <div class="orb y1"></div><div class="orb y2"></div><div class="orb y3"></div>
   </div>
 
   <main class="wrap">
-    <!-- ===== HERO ===== -->
-    <section id="inicio" class="section hero-section" aria-label="Inicio" data-reveal>
-      <header class="hero" aria-label="Cabecera">
-        <figure class="avatar" aria-label="Avatar de @maquidev" data-reveal>
-          <picture>
-            <source srcset="./assets/avatar.webp" type="image/webp">
-            <img src="./assets/avatar.webp" alt="Adrián Maquirriain (@maquidev)" width="200" height="250" loading="eager" decoding="async">
-          </picture>
-        </figure>
+    <!-- ===== HERO FULL ===== -->
+    <section id="inicio" class="hero-full" aria-label="Hero principal" data-reveal>
+      <!-- canvas de confetti -->
+      <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
 
-        <div data-reveal>
-          <h1 class="h1">Creador de <span class="accent">IA & Web</span><br>ideas claras, proyectos reales</h1>
-          <p class="muted">Comparto lo que hago y lo que aprendo. Recursos que ahorran tiempo y funcionan.</p>
-          <div class="tags"><span class="tag">IA</span><span class="tag">Dev</span><span class="tag">Web</span></div>
-          <div class="actions">
-            <button id="btn-github" class="btn" type="button" aria-label="Ver GitHub">GitHub</button>
-            <button id="btn-mail"   class="btn" type="button" aria-label="Enviar email">✉️ Contacto</button>
-          </div>
-          <a class="scroll-hint" href="#proyectos" aria-label="Ir a proyectos">Desliza para explorar ↓</a>
-        </div>
-      </header>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="brand-grad">AI Developer</span><br>& Designer
+        </h1>
+        <p class="hero-sub muted">
+          Hi, I'm Adrián Maquirriain — creative developer and AI video creator.
+          I build everyday helpful apps and entertainment content.
+        </p>
+
+        <a class="scroll-hint big" href="#experiencia" aria-label="Scroll to explore">Scroll to explore ↓</a>
+      </div>
     </section>
 
-    <!-- ===== EXPERIENCIA (ancla para el nav) ===== -->
+    <!-- ===== EXPERIENCIA ===== -->
     <section id="experiencia" class="section" aria-labelledby="t-exp" data-reveal>
       <h2 id="t-exp" class="h2">Experiencia</h2>
       <p class="muted">Próximamente: proyectos, stack y logros clave.</p>
@@ -158,7 +148,7 @@
     </div>
   </footer>
 
-  <script src="./assets/app.js" defer></script>
-  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">Activa JavaScript para ver los enlaces.</div></noscript>
+  <script src="./assets/app.js?v=4" defer></script>
+  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">Activa JavaScript para ver las animaciones y enlaces.</div></noscript>
 </body>
 </html>
