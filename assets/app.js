@@ -1,4 +1,4 @@
-/* app.js — nav + secure links + scrollspy + cursor glow + scroll progress/header compact + CTA */
+/* app.js — nav + secure links + scrollspy + cursor glow + scroll progress/header compact */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
@@ -32,7 +32,7 @@
 
   // ===== Scrollspy (yellow chip on active) =====
   const spyLinks=[...document.querySelectorAll('[data-spy]')];
-  const sections=["#start","#about","#experience","#projects","#contact","#cta"]
+  const sections=["#start","#about","#experience","#projects","#contact"]
         .map(id=>document.querySelector(id)).filter(Boolean);
 
   if("IntersectionObserver" in window && sections.length){
@@ -86,9 +86,9 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // ===== CTA / footer / buttons =====
+  // ===== Buttons (CTA / footer / extras) =====
   const navDonate=document.getElementById("nav-donate");
-  const ctaInvite=document.getElementById("cta-invite");
+  const contactInvite=document.getElementById("contact-invite");
   const gh=document.getElementById("btn-github");
   const em=document.getElementById("btn-mail");
   const em2=document.getElementById("btn-mail-2");
@@ -96,7 +96,7 @@
   const fm=document.getElementById("f-mail");
 
   if(navDonate) navDonate.addEventListener("click",openDonate);
-  if(ctaInvite) ctaInvite.addEventListener("click",openDonate);
+  if(contactInvite) contactInvite.addEventListener("click",openDonate);
   if(gh) gh.addEventListener("click",openGithub);
   if(em) em.addEventListener("click",openMail);
   if(em2) em2.addEventListener("click",openMail);
