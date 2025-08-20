@@ -1,6 +1,6 @@
-/* app.js — @maquidev
+/* app.js — NAV + seguridad + motion
    - Ofuscación: Revolut, GitHub, Email
-   - NAV: burger + scroll suave + scrollspy
+   - NAV: burger + scroll suave + scrollspy (Experiencia/Proyectos/Contacto)
    - Reveal on scroll
    - CTA “Invitar” solo en el nav
    - Año del footer
@@ -11,11 +11,11 @@
   // ===== Ofuscación simple XOR =====
   function xorDecode(arr, key) { return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
 
-  /* Email: maqui.develop@gmail.com (key=7) */
+  
   const MAIL = [106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY = 7;
-  /* Revolut alias: adrianz5c8 (key=7) */
+  
   const REV_ALIAS = [102,99,117,110,102,105,125,50,100,63], REV_KEY = 7;
-  /* GitHub user: maqui94 (key=7) */
+  
   const GH_USER = [106,102,118,114,110,62,51], GH_KEY = 7;
 
   function openDonate(){ window.open(["https","://","revolut",".","me","/", xorDecode(REV_ALIAS, REV_KEY)].join(""), "_blank", "noopener"); }
@@ -42,9 +42,11 @@
     });
   });
 
-  // ===== Scrollspy =====
+  // ===== Scrollspy (Inicio + Experiencia + Proyectos + Contacto) =====
   const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
-  const sections = ["#inicio","#proyectos","#apoyar","#contacto"].map(id => document.querySelector(id)).filter(Boolean);
+  const sections = ["#inicio", "#experiencia", "#proyectos", "#contacto"]
+    .map(id => document.querySelector(id)).filter(Boolean);
+
   if ("IntersectionObserver" in window && sections.length){
     const io = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -62,17 +64,16 @@
   if ("IntersectionObserver" in window && revealEls.length){
     const rio = new IntersectionObserver(entries => {
       entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add("in"); rio.unobserve(en.target); } });
-    }, { threshold: 0.2 });
+    }, { threshold:0.2 });
     revealEls.forEach(el => rio.observe(el));
   } else {
-    // fallback
     revealEls.forEach(el => el.classList.add("in"));
   }
 
-  // ===== Botones / Enlaces (solo nav CTA + utilidades) =====
+  // ===== Botones / CTA / footer =====
   const navDonate = document.getElementById("nav-donate");
-  const gh = document.getElementById("btn-github");
-  const em = document.getElementById("btn-mail");
+  const gh  = document.getElementById("btn-github");
+  const em  = document.getElementById("btn-mail");
   const em2 = document.getElementById("btn-mail-2");
   const fgh = document.getElementById("f-github");
   const fm  = document.getElementById("f-mail");
@@ -84,7 +85,6 @@
   if (fgh) fgh.addEventListener("click", e => { e.preventDefault(); openGithub(); });
   if (fm)  fm.addEventListener("click", e => { e.preventDefault(); openMail(); });
 
-  // ===== Año del footer =====
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
 })();
