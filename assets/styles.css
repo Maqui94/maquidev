@@ -184,3 +184,51 @@ footer a.link:hover{text-decoration:underline}
 
 /* Anchors for sticky nav */
 #start, #about, #experience, #projects, #contact { scroll-margin-top: 90px; }
+/* ===== ABOUT (text + photo) ===== */
+.section-about .about-grid{
+  display:grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap:28px;
+  align-items:center;
+}
+@media (max-width: 980px){
+  .section-about .about-grid{ grid-template-columns: 1fr; }
+}
+
+/* Foto con recorte y marca */
+.about-photo{
+  justify-self:end;
+  max-width:520px;
+  width:100%;
+  position:relative;
+}
+@media (max-width:980px){ .about-photo{ justify-self:center; } }
+
+.about-photo img{
+  width:100%;
+  height:100%;
+  aspect-ratio: 4 / 5;              /* recorte vertical, cintura para arriba */
+  object-fit: cover;
+  object-position: 50% 38%;
+  display:block;
+
+  border-radius:18px;
+  border:1px solid rgba(255,214,10,.28);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 0 6px rgba(255,214,10,.10);  /* “ring” suave amarillo */
+  filter:contrast(1.04) saturate(1.03);
+}
+
+/* Sutil brillo decorativo detrás de la foto */
+.about-photo::after{
+  content:"";
+  position:absolute; inset:-8% -6% -12% -6%;
+  border-radius:24px;
+  background: radial-gradient(60% 60% at 70% 20%, rgba(255,214,10,.12), transparent 60%);
+  z-index:-1; filter:blur(22px);
+}
+
+/* Ajustes del texto para equilibrar con la imagen */
+.section-about .about-text p{ margin-top:4px; }
+
