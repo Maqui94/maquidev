@@ -84,8 +84,10 @@
       </a>
     </section>
 
-    <!-- ===== ABOUT ===== -->
-    <section id="about" class="section" aria-labelledby="t-about" data-reveal>
+   <!-- ===== ABOUT ===== -->
+<section id="about" class="section section-about" aria-labelledby="t-about" data-reveal>
+  <div class="about-grid">
+    <div class="about-text">
       <h2 id="t-about" class="h2">About</h2>
       <p class="muted">
         I craft clear interfaces and tiny tools that save time. I like fast UIs, neat code,
@@ -101,7 +103,21 @@
         <span class="chip">AI</span>
         <span class="chip">Video</span>
       </div>
-    </section>
+    </div>
+
+    <!-- Foto: avatar.webp -->
+    <figure class="about-photo" aria-label="Photo of Adrián Maquirriain">
+      <picture>
+        <source srcset="./assets/avatar.webp" type="image/webp">
+        <img
+          src="./assets/avatar.webp"
+          alt="Adrián Maquirriain (Maquidev)"
+          width="560" height="700"
+          loading="lazy" decoding="async">
+      </picture>
+    </figure>
+  </div>
+</section>
 
     <!-- ===== EXPERIENCE ===== -->
     <section id="experience" class="section" aria-labelledby="t-exp" data-reveal>
