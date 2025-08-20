@@ -7,6 +7,7 @@
    - Año del footer
 */
 (function () {
+   document.documentElement.classList.add('js');
   "use strict";
 
   // ===== Ofuscación XOR =====
@@ -63,7 +64,8 @@
     revealEls.forEach(el => rio.observe(el));
   } else { revealEls.forEach(el => el.classList.add("in")); }
 
-  // ===== Confetti (cuadraditos) =====
+// ===== Confetti (cuadraditos) =====
+try {
   (function confettiInit(){
     const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const canvas = document.getElementById("confetti");
@@ -72,71 +74,49 @@
     let w = canvas.width = canvas.offsetWidth;
     let h = canvas.height = canvas.offsetHeight;
 
-    // Colores (marca en amarillo + acentos oscuros, alfa bajos)
     const COLORS = [
       "rgba(255,214,10,0.35)", "rgba(255,179,0,0.28)", "rgba(255,233,122,0.25)",
       "rgba(28,41,68,0.25)", "rgba(124,34,34,0.20)", "rgba(38,61,94,0.22)"
     ];
-
     const isMobile = Math.min(w,h) < 680;
     const COUNT = isMobile ? 40 : 90;
-
     const rand = (min, max) => Math.random() * (max - min) + min;
-    const parts = [];
-    for (let i=0;i<COUNT;i++){
-      parts.push({
-        x: rand(0, w), y: rand(0, h),
-        s: rand(6, 18),                      // tamaño
-        vx: rand(-0.15, 0.15),               // velocidad base
-        vy: rand(0.04, 0.15),
-        ang: rand(0, Math.PI*2),             // ángulo de rotación
-        vang: rand(-0.01, 0.01),
-        col: COLORS[(Math.random()*COLORS.length)|0],
-        par: rand(0.02, 0.12)                // factor parallax
-      });
-    }
 
-    // Parallax con el ratón
+    const parts = Array.from({length: COUNT}, () => ({
+      x: rand(0,w), y: rand(0,h), s: rand(6,18),
+      vx: rand(-0.15,0.15), vy: rand(0.04,0.15),
+      ang: rand(0,Math.PI*2), vang: rand(-0.01,0.01),
+      col: COLORS[(Math.random()*COLORS.length)|0], par: rand(0.02,0.12)
+    }));
+
     let targetPX = 0, targetPY = 0, parX = 0, parY = 0;
-    window.addEventListener("mousemove", e=>{
-      const cx = window.innerWidth/2, cy = window.innerHeight/2;
-      targetPX = (e.clientX - cx) / cx;   // -1..1
-      targetPY = (e.clientY - cy) / cy;
+    addEventListener("mousemove", e=>{
+      const cx = innerWidth/2, cy = innerHeight/2;
+      targetPX = (e.clientX - cx) / cx; targetPY = (e.clientY - cy) / cy;
     }, {passive:true});
 
-    // Resize
-    const onResize = ()=>{ w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight; };
-    window.addEventListener("resize", onResize);
+    addEventListener("resize", ()=>{
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+    });
 
-    // Animación
-    function tick(){
-      // easing del parallax para que siga “suave”
-      parX += (targetPX - parX) * 0.05;
-      parY += (targetPY - parY) * 0.05;
-
+    (function tick(){
+      parX += (targetPX - parX) * 0.05; parY += (targetPY - parY) * 0.05;
       ctx.clearRect(0,0,w,h);
-      for (let p of parts){
+      for (const p of parts){
         p.x += p.vx; p.y += p.vy; p.ang += p.vang;
-
-        // envolvente
         if (p.x < -20) p.x = w+20; else if (p.x > w+20) p.x = -20;
         if (p.y < -20) p.y = h+20; else if (p.y > h+20) p.y = -20;
-
-        const offX = parX * 30 * p.par;   // desplazamiento por parallax
-        const offY = parY * 30 * p.par;
-
-        ctx.save();
-        ctx.translate(p.x + offX, p.y + offY);
-        ctx.rotate(p.ang);
-        ctx.fillStyle = p.col;
-        const s = p.s;
-        ctx.fillRect(-s/2, -s/2, s, s);
-        ctx.restore();
+        const offX = parX * 30 * p.par, offY = parY * 30 * p.par;
+        ctx.save(); ctx.translate(p.x+offX, p.y+offY); ctx.rotate(p.ang);
+        ctx.fillStyle = p.col; const s = p.s; ctx.fillRect(-s/2,-s/2,s,s); ctx.restore();
       }
       requestAnimationFrame(tick);
-    }
-    tick();
+    })();
   })();
+} catch (err) {
+  console.warn("Confetti deshabilitado:", err);
+}
 
   // ===== Botones / CTA / footer =====
   const navDonate = document.getElementById("nav-donate");
