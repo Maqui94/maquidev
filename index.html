@@ -10,7 +10,7 @@
   <meta property="og:description" content="Proyectos reales, recursos útiles y cómo invitar un café ☕.">
   <meta property="og:type" content="website">
 
-  <!-- Favicon set -->
+  <!-- Favicon / icono M -->
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="./assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="alternate icon" href="./assets/favicon-16.png" sizes="16x16" type="image/png">
@@ -22,87 +22,83 @@
   <link rel="preload" as="image" href="./assets/avatar.webp">
   <link rel="preload" as="image" href="./assets/maquidev_bg.svg">
 
-  <!-- Fonts -->
+  <!-- Fuentes (marca y textos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Bebas Neue = logo/brand · Space Grotesk = títulos · Inter = texto -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-  <!-- ====== NAV SUPERIOR FIJO ====== -->
   <a href="#inicio" class="skip">Saltar al contenido</a>
+
+  <!-- ===== NAV superior estilo portfolio ===== -->
   <header class="topbar" role="navigation" aria-label="Principal">
     <div class="topbar-inner">
-      <a href="#inicio" class="brand" aria-label="Volver al inicio">
-        <!-- Foto del nav (arreglada): usa tu avatar.webp -->
-        <img class="brand-avatar" src="./assets/avatar.webp" alt="Foto de @maquidev" width="28" height="28" loading="lazy" decoding="async">
-        <span>Maquidev</span>
+      <!-- Logo M + palabra MAQUIDEV -->
+      <a href="#inicio" class="brand" aria-label="Ir al inicio">
+        <img class="brand-mark" src="./assets/favicon.svg" alt="" width="28" height="28" decoding="async" loading="lazy">
+        <span class="brand-name">MAQUIDEV</span>
       </a>
+
+      <!-- Menú centrado -->
       <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navmenu">
         <span></span><span></span><span></span>
       </button>
       <nav id="navmenu" class="nav">
-        <a href="#inicio" data-spy>Inicio</a>
+        <a href="#experiencia" data-spy>Experiencia</a>
         <a href="#proyectos" data-spy>Proyectos</a>
-        <a href="#apoyar" data-spy>Apoyar</a>
-        <a href="#contacto" data-spy>Contacto</a>
-        <!-- ÚNICO lugar con CTA -->
-        <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invitar un café">☕ Invitar</button>
+        <a href="#contacto"   data-spy>Contacto</a>
       </nav>
+
+      <!-- CTA único -->
+      <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invitar un café">☕ Invitar</button>
     </div>
   </header>
 
-  <!-- Fondo animado (decorativo) -->
+  <!-- Fondo animado suave -->
   <div class="orbs" aria-hidden="true">
-    <div class="orb y1"></div>
-    <div class="orb y2"></div>
-    <div class="orb y3"></div>
+    <div class="orb y1"></div><div class="orb y2"></div><div class="orb y3"></div>
   </div>
 
   <main class="wrap">
-    <!-- ====== INICIO / HERO ====== -->
+    <!-- ===== HERO ===== -->
     <section id="inicio" class="section hero-section" aria-label="Inicio" data-reveal>
       <header class="hero" aria-label="Cabecera">
         <figure class="avatar" aria-label="Avatar de @maquidev" data-reveal>
           <picture>
             <source srcset="./assets/avatar.webp" type="image/webp">
-            <img src="./assets/avatar.webp" alt="Adrián Maquirriain (@maquidev)" width="160" height="200" loading="eager" decoding="async">
+            <img src="./assets/avatar.webp" alt="Adrián Maquirriain (@maquidev)" width="200" height="250" loading="eager" decoding="async">
           </picture>
         </figure>
 
         <div data-reveal>
-          <h1 class="h1">
-            Creador de <span class="accent">IA & Web</span><br>
-            ideas claras, proyectos reales
-          </h1>
+          <h1 class="h1">Creador de <span class="accent">IA & Web</span><br>ideas claras, proyectos reales</h1>
           <p class="muted">Comparto lo que hago y lo que aprendo. Recursos que ahorran tiempo y funcionan.</p>
-          <div class="tags">
-            <span class="tag">IA</span><span class="tag">Dev</span><span class="tag">Web</span>
-          </div>
+          <div class="tags"><span class="tag">IA</span><span class="tag">Dev</span><span class="tag">Web</span></div>
           <div class="actions">
-            <!-- Quitamos "Invitar" aquí para tenerlo solo en el nav -->
-            <button id="btn-github" class="btn" type="button" aria-label="Ver GitHub">
-              <span class="ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.09-.74.09-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.8.42-1.33.77-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.23-.13-.31-.54-1.56.12-3.24 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.23 0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
-              </span>
-              GitHub
-            </button>
-            <button id="btn-mail" class="btn" type="button" aria-label="Enviar email">✉️ Contacto</button>
+            <button id="btn-github" class="btn" type="button" aria-label="Ver GitHub">GitHub</button>
+            <button id="btn-mail"   class="btn" type="button" aria-label="Enviar email">✉️ Contacto</button>
           </div>
           <a class="scroll-hint" href="#proyectos" aria-label="Ir a proyectos">Desliza para explorar ↓</a>
         </div>
       </header>
     </section>
 
-    <!-- ====== PROYECTOS ====== -->
-    <section id="proyectos" class="section" aria-labelledby="titulo-proyectos" data-reveal>
-      <h2 id="titulo-proyectos" class="h2">Proyectos</h2>
+    <!-- ===== EXPERIENCIA (ancla para el nav) ===== -->
+    <section id="experiencia" class="section" aria-labelledby="t-exp" data-reveal>
+      <h2 id="t-exp" class="h2">Experiencia</h2>
+      <p class="muted">Próximamente: proyectos, stack y logros clave.</p>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="section" aria-labelledby="t-proy" data-reveal>
+      <h2 id="t-proy" class="h2">Proyectos</h2>
       <p class="muted">Selección rápida. Haz clic para ver cada uno.</p>
 
       <div class="projects">
-        <!-- PROYECTO 1 — En proceso -->
         <article class="card" data-reveal>
           <h3>Oposiciones · Test web</h3>
           <p>Tests online de la Policía Foral: práctica sin fricción, modos examen/repaso/flashcards y feedback inmediato.</p>
@@ -112,18 +108,12 @@
             <li>Resultado: memorizas más en menos tiempo.</li>
           </ul>
           <div class="tech" style="margin:8px 0 10px">
-            <span class="status st-progress" title="En proceso">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4v8l6 3.5-1-1.73-5-2.77V2z"/></svg>
-              En proceso
-            </span>
-            <span class="tech-dot" title="Tecnología">Web</span>
+            <span class="status st-progress"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4v8l6 3.5-1-1.73-5-2.77V2z"/></svg> En proceso</span>
+            <span class="tech-dot">Web</span>
           </div>
-          <div class="actions">
-            <a class="btn" href="https://maqui94.github.io/oposiciones-test/index.html" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a>
-          </div>
+          <div class="actions"><a class="btn" href="https://maqui94.github.io/oposiciones-test/index.html" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a></div>
         </article>
 
-        <!-- PROYECTO 2 — Empezando -->
         <article class="card" data-reveal>
           <h3>Studify Assistant (preview)</h3>
           <p>Genera preguntas tipo test desde tus PDF con IA para exámenes rápidos y reutilizables.</p>
@@ -133,28 +123,17 @@
             <li>Resultado: horas ahorradas + consistencia.</li>
           </ul>
           <div class="tech" style="margin:8px 0 10px">
-            <span class="status st-starting" title="Empezando">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              Empezando
-            </span>
-            <span class="tech-dot" title="Tecnología">IA</span>
+            <span class="status st-starting"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M8 5v14l11-7z"/></svg> Empezando</span>
+            <span class="tech-dot">IA</span>
           </div>
-          <div class="actions">
-            <a class="btn" href="https://preview--studify-assistant.lovable.app/" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a>
-          </div>
+          <div class="actions"><a class="btn" href="https://preview--studify-assistant.lovable.app/" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a></div>
         </article>
       </div>
     </section>
 
-    <!-- ====== APOYAR ====== -->
-    <section id="apoyar" class="section" aria-labelledby="titulo-apoyar" data-reveal>
-      <h2 id="titulo-apoyar" class="h2">Apoya los proyectos</h2>
-      <p class="muted">Si te ayuda mi trabajo y quieres que siga, pulsa “Invitar” en el menú superior. ¡Gracias por el impulso! ☕</p>
-    </section>
-
-    <!-- ====== CONTACTO / REDES ====== -->
-    <section id="contacto" class="section" aria-labelledby="titulo-contacto" data-reveal>
-      <h2 id="titulo-contacto" class="h2">Contacto</h2>
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="section" aria-labelledby="t-contacto" data-reveal>
+      <h2 id="t-contacto" class="h2">Contacto</h2>
       <p class="muted">DMs abiertos. También por email.</p>
       <div class="actions">
         <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -164,7 +143,7 @@
     </section>
   </main>
 
-  <!-- ====== FOOTER ====== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="inner">
       <div>© <span id="y"></span>
@@ -179,10 +158,7 @@
     </div>
   </footer>
 
-  <!-- JS -->
   <script src="./assets/app.js" defer></script>
-  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">
-    Activa JavaScript para ver los enlaces de contacto y apoyo.
-  </div></noscript>
+  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">Activa JavaScript para ver los enlaces.</div></noscript>
 </body>
 </html>
