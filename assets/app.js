@@ -1,19 +1,19 @@
-/* app.js — NAV + enlaces seguros + scrollspy + cursor glow */
+/* app.js — nav + secure links + scrollspy + cursor glow */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
 
-  // ===== Ofuscación XOR =====
+  // ===== XOR obfuscation =====
   function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
   const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7; 
-  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7; 
+  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7; /
   const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7;
 
   function openDonate(){ window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener"); }
   function openGithub(){ window.open(["https","://","github",".","com","/",xorDecode(GH_USER,GH_KEY)].join(""),"_blank","noopener"); }
   function openMail(){ window.location.href="mailto:"+xorDecode(MAIL,MAIL_KEY); }
 
-  // ===== NAV burger + scroll suave =====
+  // ===== NAV burger + smooth scroll =====
   const topbar=document.querySelector(".topbar");
   const burger=document.querySelector(".burger");
   const navLinks=[...document.querySelectorAll('nav a[href^="#"]')];
@@ -30,9 +30,11 @@
     });
   });
 
-  // ===== Scrollspy (chip amarillo) =====
+  // ===== Scrollspy (yellow chip on active) =====
   const spyLinks=[...document.querySelectorAll('[data-spy]')];
-  const sections=["#inicio","#experiencia","#proyectos","#contacto"].map(id=>document.querySelector(id)).filter(Boolean);
+  const sections=["#start","#about","#experience","#projects","#contact"]
+        .map(id=>document.querySelector(id)).filter(Boolean);
+
   if("IntersectionObserver" in window && sections.length){
     const io=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
@@ -44,7 +46,6 @@
     },{rootMargin:"-40% 0px -50% 0px",threshold:[0,0.25,0.6,1]});
     sections.forEach(sec=>io.observe(sec));
   } else {
-    // fallback mínimo
     spyLinks[0]?.classList.add('active');
   }
 
@@ -57,7 +58,7 @@
     revealEls.forEach(el=>rio.observe(el));
   } else { revealEls.forEach(el=>el.classList.add("in")); }
 
-  // ===== Cursor glow (mueve el foco del radial-gradient en el hero) =====
+  // ===== Cursor glow (move radial center with the pointer) =====
   const hero=document.querySelector(".hero-full");
   if(hero){
     let raf;
@@ -70,12 +71,11 @@
     }
     const onMove=(e)=>{ cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>update(e)); };
     hero.addEventListener("pointermove", onMove);
-    // posición inicial (centro)
     hero.style.setProperty("--mx","50%");
     hero.style.setProperty("--my","50%");
   }
 
-  // ===== CTA/Footer =====
+  // ===== CTA / footer =====
   const navDonate=document.getElementById("nav-donate");
   const gh=document.getElementById("btn-github");
   const em=document.getElementById("btn-mail");
