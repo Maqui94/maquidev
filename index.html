@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <!-- ====== META ====== -->
+  <!-- ========= META ========= -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@maquidev · Proyectos + apoyar</title>
@@ -10,75 +10,127 @@
   <meta property="og:title" content="@maquidev · Proyectos + apoyar">
   <meta property="og:description" content="Proyectos de IA y web de @maquidev. Enlaces rápidos y cómo invitar un café ☕.">
   <meta property="og:type" content="website">
-  <link rel="preload" as="image" href="./avatar.jpg" imagesrcset="./avatar.jpg 640w" imagesizes="(max-width:600px) 140px, 160px">
 
-  <!-- ====== PALETA (amarillos marca) ====== -->
+  <!-- Preload del avatar (rutas dentro de /assets). Si solo tienes .webp, sigue funcionando. -->
+  <link rel="preload" as="image" href="./assets/avatar.webp" imagesrcset="./assets/avatar.webp 700w, ./assets/avatar.jpg 700w" imagesizes="(max-width:600px) 140px, 160px">
+
+  <!-- ========= ESTILOS ========= -->
   <style>
+    /* ====== Paleta / Tokens ====== */
     :root{
-      --bg-0:#0b0d12; --bg-1:#11151c; --bg-2:#171c25;
-      --fg-0:#f6f7fb; --fg-1:#c7cbd6;
-      --y-50:#fff8cc; --y-100:#ffe97a; --y-200:#ffe04a; --y-300:#ffd60a; --y-400:#ffc300; --y-500:#ffb300; --y-600:#f39c00;
-      --g-hero: radial-gradient(1200px 600px at 10% -10%, rgba(255,214,10,.18), transparent 55%),
-                radial-gradient(900px 500px at 90% 0%, rgba(255,195,0,.14), transparent 60%),
-                radial-gradient(700px 400px at 50% 100%, rgba(255,179,0,.1), transparent 60%);
-      --g-btn: linear-gradient(135deg, var(--y-300), var(--y-500));
-      --g-btn-hover: linear-gradient(135deg, var(--y-100), var(--y-300));
-      --ring: 0 0 0 6px rgba(255,214,10,.12);
-      --border: 1px solid rgba(255,255,255,.08);
+      /* Fondo y texto */
+      --bg-0:#0b0d12;
+      --bg-1:#11151c;
+      --bg-2:#171c25;
+      --fg-0:#f6f7fb;
+      --fg-1:#c7cbd6;
+
+      /* Amarillos marca */
+      --y-100:#ffe97a;
+      --y-300:#ffd60a;
+      --y-500:#ffb300;
+
+      /* Estados (accesibles sobre fondo oscuro) */
+      --st-blue:#2a66ff;   --st-blue-bg:rgba(42,102,255,.18);
+      --st-green:#19c37d;  --st-green-bg:rgba(25,195,125,.20);
+      --st-gray:#9aa0a6;   --st-gray-bg:rgba(154,160,166,.18);
+      --st-red:#ff5c5c;    --st-red-bg:rgba(255,92,92,.20);
+
+      /* Decoración */
+      --border:1px solid rgba(255,255,255,.08);
+      --ring:0 0 0 6px rgba(255,214,10,.12);
+      --g-btn:linear-gradient(135deg, var(--y-300), var(--y-500));
+      --g-btn-hover:linear-gradient(135deg, #fff2a6, var(--y-300));
     }
+
+    /* Reset mínimo */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; color:var(--fg-0); background:var(--bg-0); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
-      background-image: var(--g-hero), linear-gradient(180deg, #0b0d12 0%, #0b0d12 100%);
+      margin:0; color:var(--fg-0); background:var(--bg-0);
+      font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
+      overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:820px; margin:0 auto; padding:28px;}
+    .wrap{max-width:820px; margin:0 auto; padding:28px; position:relative; z-index:2}
 
-    /* ====== HERO ====== */
+    /* ====== Fondo animado suave (baja CPU, respeta reduce motion) ====== */
+    .orbs{position:fixed; inset:-20% -10% -10% -10%; pointer-events:none; z-index:0; filter:blur(40px); opacity:.45}
+    .orb{position:absolute; width:40vmax; height:40vmax; border-radius:50%;}
+    .orb.y1{background:radial-gradient(circle at 30% 30%, rgba(255,214,10,.18), transparent 60%); left:-10%; top:-10%; animation:float1 24s ease-in-out infinite}
+    .orb.y2{background:radial-gradient(circle at 70% 40%, rgba(255,179,0,.12), transparent 60%); right:-15%; top:-5%; animation:float2 28s ease-in-out infinite}
+    .orb.y3{background:radial-gradient(circle at 50% 60%, rgba(255,195,0,.12), transparent 60%); left:10%; bottom:-20%; animation:float3 32s ease-in-out infinite}
+    @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(6%,8%)}}
+    @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,6%)}}
+    @keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(4%,-6%)}}
+    @media (prefers-reduced-motion:reduce){
+      .orbs{display:none}
+    }
+
+    /* ====== Hero / Cabecera ====== */
     .hero{
       display:flex; align-items:center; gap:18px; padding:18px; border-radius:20px;
       background:rgba(255,214,10,.04); border:var(--border);
       backdrop-filter:saturate(120%) blur(6px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
     }
-    .avatar{
-      width:160px; aspect-ratio: 4 / 5; height:auto; border-radius:18px; overflow:hidden; flex:0 0 auto;
-      border:1px solid rgba(255,214,10,.25); box-shadow: var(--ring); background:#0e1117;
-    }
-    .avatar img{
-      width:100%; height:100%; object-fit:cover;
-      object-position: 50% 38%;
-      display:block;
-      filter:contrast(1.02) saturate(1.02);
-    }
+    /* Avatar: recorte 4:5 (cintura-arriba) + centro rostro */
+    .avatar{width:160px; aspect-ratio:4/5; border-radius:18px; overflow:hidden; flex:0 0 auto;
+            border:1px solid rgba(255,214,10,.25); box-shadow:var(--ring); background:#0e1117}
+    .avatar img{width:100%; height:100%; object-fit:cover; object-position:50% 38%;
+                display:block; filter:contrast(1.04) saturate(1.03)}
 
     .hero h1{margin:0; font-size:26px; letter-spacing:.2px}
     .hero p{margin:4px 0 0; color:var(--fg-1)}
     .tags{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
     .tag{font-size:13px; padding:6px 10px; border-radius:999px; color:#0a0a0a; font-weight:600;
-         background:linear-gradient(180deg, var(--y-100), var(--y-300)); border:1px solid rgba(0,0,0,.08)}
+         background:linear-gradient(180deg, #ffe97a, var(--y-300)); border:1px solid rgba(0,0,0,.08)}
+
+    /* Botones */
     .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
     .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:14px; font-weight:700;
          transition:.18s ease; border:var(--border); background:var(--bg-1); color:inherit; cursor:pointer}
     .btn:hover{background:var(--bg-2); transform:translateY(-1px)}
-    .btn-primary{background:var(--g-btn); color:#0a0a0a; border:1px solid rgba(0,0,0,.12); box-shadow: 0 8px 20px rgba(255,214,10,.35)}
+    .btn:focus-visible{outline:2px solid var(--y-300); outline-offset:2px}
+    .btn-primary{background:var(--g-btn); color:#0a0a0a; border:1px solid rgba(0,0,0,.12); box-shadow:0 8px 20px rgba(255,214,10,.35)}
     .btn-primary:hover{background:var(--g-btn-hover); box-shadow:0 10px 24px rgba(255,214,10,.45)}
     .btn .ico{display:inline-flex}
 
-    /* ====== SECCIONES ====== */
+    /* ====== Secciones ====== */
     .section{margin-top:24px; padding:18px; border-radius:18px; background:rgba(255,255,255,.02); border:var(--border)}
     .section h2{margin:0 0 8px; font-size:20px}
     .muted{color:var(--fg-1)}
+
+    /* Tarjetas de proyecto */
     .projects{display:grid; gap:12px}
     .card{background:var(--bg-1); border:var(--border); border-radius:16px; padding:14px 16px; transition:.18s}
     .card:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.28)}
     .card h3{margin:0 0 6px; font-size:18px}
     .card p{margin:0 0 10px; color:var(--fg-1)}
-    .chip{display:inline-block; font-size:12px; font-weight:700; color:#0a0a0a; padding:6px 10px; border-radius:999px;
-          background:linear-gradient(180deg, var(--y-100), var(--y-300)); border:1px solid rgba(0,0,0,.1)}
-    .foot{margin:26px 0 8px; color:var(--fg-1); font-size:14px; text-align:center}
 
+    /* Dot circular para "IA / Web" (antes se estiraba) */
+    .tech{display:inline-flex; align-items:center; gap:10px}
+    .tech-dot{width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+              background:linear-gradient(180deg, #fff2a6, var(--y-300)); color:#0a0a0a; font-weight:900; font-size:12px;
+              border:1px solid rgba(0,0,0,.08); box-shadow:0 2px 6px rgba(0,0,0,.25)}
+
+    /* Estado del proyecto */
+    .status{display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid transparent}
+    .status svg{width:14px; height:14px}
+    .st-starting{background:var(--st-blue-bg); color:var(--st-blue); border-color:rgba(42,102,255,.35)}
+    .st-progress{background:var(--st-green-bg); color:var(--st-green); border-color:rgba(25,195,125,.35)}
+    .st-done{background:var(--st-gray-bg); color:var(--st-gray); border-color:rgba(154,160,166,.35)}
+    .st-paused{background:var(--st-red-bg); color:var(--st-red); border-color:rgba(255,92,92,.35)}
+
+    /* Footer mejorado */
+    footer{position:relative; margin:34px 0 8px}
+    footer .inner{border-top:1px solid rgba(255,255,255,.08); padding:16px 10px; text-align:center; color:var(--fg-1);
+                  background:linear-gradient(180deg, rgba(255,214,10,.05), transparent 40%)}
+    footer nav{display:flex; gap:14px; justify-content:center; margin-top:6px}
+    footer a.link{color:var(--fg-0); opacity:.9}
+    footer a.link:hover{text-decoration:underline}
+
+    /* Responsive */
     @media (max-width:600px){
       .hero{flex-direction:column; align-items:flex-start}
       .avatar{width:140px}
@@ -86,14 +138,21 @@
   </style>
 </head>
 <body>
+  <!-- Fondo animado (decorativo) -->
+  <div class="orbs" aria-hidden="true">
+    <div class="orb y1"></div>
+    <div class="orb y2"></div>
+    <div class="orb y3"></div>
+  </div>
+
   <main class="wrap">
     <!-- ====== HERO ====== -->
     <header class="hero" aria-label="Cabecera">
       <figure class="avatar" aria-label="Avatar de @maquidev">
+        <!-- IMPORTANTE: la ruta correcta es ./assets/avatar.webp (o .jpg). Si solo tienes .webp, también se usa como fallback. -->
         <picture>
-          
-          <source srcset="./avatar.webp" type="image/webp">
-          <img src="./avatar.jpg" alt="Adrián Maquirriain (@maquidev)" width="160" height="200" loading="eager" decoding="async">
+          <source srcset="./assets/avatar.webp" type="image/webp">
+          <img src="./assets/avatar.jpg" alt="Adrián Maquirriain (@maquidev)" width="160" height="200" loading="eager" decoding="async">
         </picture>
       </figure>
 
@@ -104,20 +163,16 @@
           <span class="tag">IA</span><span class="tag">Dev</span><span class="tag">Web</span>
         </div>
         <div class="actions">
-          <!-- Botón DONAR (oculto hasta JS) -->
+          <!-- Enlaces sensibles se activan por JS (no quedan expuestos en HTML) -->
           <button id="btn-donate" class="btn btn-primary" type="button" aria-label="Invitar un café">
             <span class="ico">☕</span> Invitar un café
           </button>
-          <!-- Botón GitHub (sin exponer usuario en HTML) -->
           <button id="btn-github" class="btn" type="button" aria-label="Ver GitHub">
             <span class="ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.09-.74.09-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.8.42-1.33.77-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.23-.13-.31-.54-1.56.12-3.24 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.23 0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.09-.74.09-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.8.42-1.33.77-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.23-.13-.31-.54-1.56.12-3.24 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.23 0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
             </span>
             GitHub
           </button>
-          <!-- Botón Email (sin exponer correo en HTML) -->
           <button id="btn-mail" class="btn" type="button" aria-label="Enviar email">✉️ Contacto</button>
         </div>
       </div>
@@ -127,22 +182,43 @@
     <section class="section" aria-labelledby="titulo-proyectos">
       <h2 id="titulo-proyectos">Proyectos</h2>
       <p class="muted">Selección rápida. Haz clic para ver cada uno.</p>
+
       <div class="projects">
+        <!-- PROYECTO 1 — Estado: En proceso (asumido) -->
         <article class="card">
           <h3>Oposiciones · Test web</h3>
           <p>Web para practicar test de oposiciones. Modos examen, repaso y flashcards.</p>
+
+          <div class="tech" style="margin:8px 0 10px">
+            <span class="status st-progress" title="En proceso">
+              <!-- icono progreso -->
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4v8l6 3.5-1-1.73-5-2.77V2z"/></svg>
+              En proceso
+            </span>
+            <span class="tech-dot" title="Tecnología">Web</span>
+          </div>
+
           <div class="actions">
-            <a class="btn" href="https://maqui94.github.io/oposiciones-test/index.html" target="_blank" rel="noopener nofollow">Ver proyecto</a>
-            <span class="chip">Web</span>
+            <a class="btn" href="https://maqui94.github.io/oposiciones-test/index.html" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a>
           </div>
         </article>
 
+        <!-- PROYECTO 2 — Estado: Empezando (asumido por 'preview') -->
         <article class="card">
           <h3>Studify Assistant (preview)</h3>
           <p>Generador de preguntas tipo test desde contenidos. Ahorra horas de estudio.</p>
+
+          <div class="tech" style="margin:8px 0 10px">
+            <span class="status st-starting" title="Empezando">
+              <!-- icono play -->
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Empezando
+            </span>
+            <span class="tech-dot" title="Tecnología">IA</span>
+          </div>
+
           <div class="actions">
-            <a class="btn" href="https://preview--studify-assistant.lovable.app/" target="_blank" rel="noopener nofollow">Ver proyecto</a>
-            <span class="chip">IA</span>
+            <a class="btn" href="https://preview--studify-assistant.lovable.app/" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a>
           </div>
         </article>
       </div>
@@ -154,17 +230,30 @@
       <p class="muted">Si te ayuda mi trabajo, puedes invitarme un café. Gracias por el impulso ☕</p>
       <div class="actions">
         <button id="btn-donate-2" class="btn btn-primary" type="button">Invitar un café</button>
-        <a class="btn" href="https://notion.so" target="_blank" rel="noopener">Más recursos</a>
+        <button id="btn-more" class="btn" type="button" aria-label="Más recursos">Más recursos</button>
       </div>
     </section>
 
-    <p class="foot">© 2025 @maquidev · Enlaces y recursos</p>
+    <!-- ====== FOOTER ====== -->
+    <footer>
+      <div class="inner">
+        <div>© <span id="y"></span> @maquidev · Enlaces y recursos</div>
+        <nav>
+          <a id="f-github" class="link" href="#" role="link">GitHub</a>
+          <a id="f-mail" class="link" href="#" role="link">Contacto</a>
+        </nav>
+      </div>
+    </footer>
   </main>
 
-  <!-- ====== CLOAKING JS (ofusca email / revolut / GitHub) ====== -->
+  <!-- ========= JS: Ofuscación y activación segura de enlaces =========
+       - Evita dejar email, Revolut y usuario de GitHub en texto plano del HTML.
+       - Se decodifican en tiempo de ejecución con una XOR simple + sólo tras interacción. -->
   <script>
     (function(){
       "use strict";
+
+      // XOR decoder (ofuscación simple para bloquear scrapers básicos)
       function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(function(n){ return n ^ key; })); }
 
       /* Email: maqui.develop@gmail.com (key=7) */
@@ -176,39 +265,55 @@
       /* GitHub user: maqui94 (key=7) */
       var GH_USER = [106,102,118,114,110,62,51], GH_KEY=7;
 
+      // Construye URLs al vuelo (abrimos en nueva pestaña)
       function openDonate(){
         var alias = xorDecode(REV_ALIAS, REV_KEY);
-        var url = ['https','://','revolut','.','me','/', alias].join('');
+        var url   = ['https','://','revolut','.','me','/', alias].join('');
         window.open(url, '_blank', 'noopener');
       }
       function openGithub(){
         var user = xorDecode(GH_USER, GH_KEY);
-        var url = ['https','://','github','.','com','/', user].join('');
+        var url  = ['https','://','github','.','com','/', user].join('');
         window.open(url, '_blank', 'noopener');
       }
       function openMail(){
         var mail = xorDecode(MAIL, MAIL_KEY);
+        // Si prefieres no abrir cliente correo: descomenta la siguiente línea y muestra un toast/copied.
+        // navigator.clipboard.writeText(mail);
         window.location.href = 'mailto:' + mail;
       }
 
-      var activated=false;
-      function activateOnce(){
-        if (activated) return; activated=true;
-        var b1=document.getElementById('btn-donate');
-        var b2=document.getElementById('btn-donate-2');
+      // Evita exposición sin interacción humana (reduce scraping)
+      var wired=false;
+      function wire(){
+        if (wired) return; wired=true;
+        // Botones hero/sections
+        var d1=document.getElementById('btn-donate');
+        var d2=document.getElementById('btn-donate-2');
         var gh=document.getElementById('btn-github');
         var em=document.getElementById('btn-mail');
-        if (b1) b1.addEventListener('click', openDonate);
-        if (b2) b2.addEventListener('click', openDonate);
+        var more=document.getElementById('btn-more');
+        if (d1) d1.addEventListener('click', openDonate);
+        if (d2) d2.addEventListener('click', openDonate);
         if (gh) gh.addEventListener('click', openGithub);
         if (em) em.addEventListener('click', openMail);
+        if (more) more.addEventListener('click', function(){ openGithub(); });
+        // Footer links
+        var fgh=document.getElementById('f-github');
+        var fm=document.getElementById('f-mail');
+        if (fgh) fgh.addEventListener('click', function(e){ e.preventDefault(); openGithub(); });
+        if (fm) fm.addEventListener('click', function(e){ e.preventDefault(); openMail(); });
       }
-      window.addEventListener('pointerdown', activateOnce, { once:true });
-      window.addEventListener('keydown', activateOnce, { once:true });
-      window.addEventListener('load', function(){ setTimeout(activateOnce, 1500); });
+      window.addEventListener('pointerdown', wire, { once:true });
+      window.addEventListener('keydown', wire, { once:true });
+      window.addEventListener('load', function(){ setTimeout(wire, 1500); });
+
+      // Año dinámico en footer
+      document.getElementById('y').textContent = new Date().getFullYear();
     })();
   </script>
 
+  <!-- Mensaje si JS está desactivado -->
   <noscript>
     <div style="max-width:820px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">
       Activa JavaScript para ver los enlaces de contacto y apoyo.
