@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Maquidev — Developer & Designer</title>
-  <meta name="description" content="Creative developer & AI video creator. Everyday helpful apps and entertainment content.">
+  <meta name="description" content="Creative developer & AI video creator. I build everyday helpful apps and entertainment content.">
   <meta name="theme-color" content="#FFD60A">
   <meta property="og:title" content="Maquidev — Developer & Designer">
-  <meta property="og:description" content="Creative developer & AI video creator. Everyday helpful apps and entertainment content.">
+  <meta property="og:description" content="Creative developer & AI video creator. I build everyday helpful apps and entertainment content.">
   <meta property="og:type" content="website">
 
   <!-- Iconos -->
@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./assets/styles.css?v=6">
+  <link rel="stylesheet" href="./assets/styles.css?v=7">
 </head>
 <body>
   <a href="#inicio" class="skip">Saltar al contenido</a>
@@ -33,7 +33,7 @@
   <header class="topbar" role="navigation" aria-label="Principal">
     <div class="topbar-inner">
       <a href="#inicio" class="brand" aria-label="Ir al inicio">
-        <img class="brand-mark" src="./assets/favicon.svg" alt="" width="28" height="28" decoding="async" loading="lazy">
+        <img class="brand-mark" src="./assets/favicon.svg" alt="" width="36" height="36" decoding="async" loading="lazy">
         <span class="brand-name">MAQUIDEV</span>
       </a>
 
@@ -42,24 +42,24 @@
       </button>
       <nav id="navmenu" class="nav">
         <a href="#experiencia" data-spy>Experiencia</a>
-        <a href="#proyectos" data-spy>Proyectos</a>
-        <a href="#contacto" data-spy>Contacto</a>
+        <a href="#proyectos"   data-spy>Proyectos</a>
+        <a href="#contacto"    data-spy>Contacto</a>
       </nav>
 
       <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invitar un café">☕ Invitar</button>
     </div>
   </header>
 
-  <!-- Fondo general + orbs -->
+  <!-- Fondo suave (orbs) -->
   <div class="orbs" aria-hidden="true">
     <div class="orb y1"></div><div class="orb y2"></div><div class="orb y3"></div>
   </div>
 
   <main class="wrap">
-    <!-- ===== HERO FULL ===== -->
+    <!-- ===== HERO ===== -->
     <section id="inicio" class="hero-full" aria-label="Hero principal">
-      <!-- confetti -->
-      <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+      <!-- Partículas (tsParticles) -->
+      <div id="bg-particles" class="particles" aria-hidden="true"></div>
 
       <div class="hero-content">
         <h1 class="hero-title">
@@ -129,7 +129,7 @@
   <footer>
     <div class="inner">
       <div>© <span id="y"></span>
-        <a class="brand-link" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de @maquidev">@maquidev</a>
+        <a class="brand-link" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">@maquidev</a>
         · Enlaces y recursos · <a href="#inicio" class="toplink">Volver arriba ↑</a>
       </div>
       <nav>
@@ -140,7 +140,10 @@
     </div>
   </footer>
 
-  <script src="./assets/app.js?v=6" defer></script>
-  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">Activa JavaScript para ver las animaciones y enlaces.</div></noscript>
+  <!-- tsParticles (animación estable) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js" defer></script>
+  <!-- App -->
+  <script src="./assets/app.js?v=7" defer></script>
+  <noscript><div style="max-width:1200px;margin:12px auto;padding:12px;border-radius:12px;background:#171c25;color:#c7cbd6;border:1px solid rgba(255,255,255,.08);">Activa JavaScript para ver las animaciones.</div></noscript>
 </body>
 </html>
