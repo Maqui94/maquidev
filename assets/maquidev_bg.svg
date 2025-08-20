@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Brand colors -->
+    <linearGradient id="bggrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b0d12"/>
+      <stop offset="100%" stop-color="#0b0d12"/>
+    </linearGradient>
+
+    <!-- Soft yellow glows -->
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(150 -50) rotate(0) scale(800 450)">
+      <stop offset="0%" stop-color="#FFD60A" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#FFD60A" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(1920 120) rotate(0) scale(700 420)">
+      <stop offset="0%" stop-color="#FFC300" stop-opacity="0.14"/>
+      <stop offset="60%" stop-color="#FFC300" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <radialGradient id="glow3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(960 1080) rotate(0) scale(900 520)">
+      <stop offset="0%" stop-color="#FFB300" stop-opacity="0.10"/>
+      <stop offset="65%" stop-color="#FFB300" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <!-- Subtle vignette to focus center -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35"/>
+    </radialGradient>
+
+    <!-- Gentle grid lines (very low opacity) -->
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+      <path d="M 40 0 V 80 M 0 40 H 80" stroke="#ffffff" stroke-opacity="0.02" stroke-width="1"/>
+    </pattern>
+    <mask id="gridMask">
+      <rect width="100%" height="100%" fill="white" opacity="0.25"/>
+    </mask>
+  </defs>
+
+  <!-- Base -->
+  <rect width="100%" height="100%" fill="url(#bggrad)"/>
+
+  <!-- Glows -->
+  <rect width="100%" height="100%" fill="url(#glow1)"/>
+  <rect width="100%" height="100%" fill="url(#glow2)"/>
+  <rect width="100%" height="100%" fill="url(#glow3)"/>
+
+  <!-- Subtle grid -->
+  <rect width="100%" height="100%" fill="url(#grid)" mask="url(#gridMask)"/>
+
+  <!-- Vignette -->
+  <rect width="100%" height="100%" fill="url(#vignette)"/>
+</svg>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#FFE97A" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFD60A" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <!-- Dark badge with yellow ring -->
+  <circle cx="512" cy="512" r="470" fill="#0B0D12"/>
+  <circle cx="512" cy="512" r="470" fill="none" stroke="#FFD60A" stroke-width="40"/>
+  <!-- Yellow M (filled polygon) -->
+  <path fill="url(#g)" d="
+    M 60 964 L 60 60 L 240 60
+    L 512 580 L 784 60 L 964 60 L 964 964
+    L 784 964 L 784 430 L 544 760 L 480 760 L 240 430 L 240 964 Z"/>
+</svg>
