@@ -1,4 +1,4 @@
-/* app.js — nav + secure links + robust scrollspy + cursor glow + icons */
+/* app.js — fixed header offset + nav + scrollspy + cursor glow + icons */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
@@ -13,11 +13,20 @@
   function openGithub(){ window.open(["https","://","github",".","com","/",xorDecode(GH_USER,GH_KEY)].join(""),"_blank","noopener"); }
   function openMail(){ window.location.href="mailto:"+xorDecode(MAIL,MAIL_KEY); }
 
-  /* ===== NAV burger + smooth scroll ===== */
   const topbar = document.querySelector(".topbar");
   const burger = document.querySelector(".burger");
   const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
 
+  /* ===== Compute header height and expose as CSS var ===== */
+  function setHeaderHeightVar() {
+    const h = Math.max(56, topbar?.getBoundingClientRect().height || 64);
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+  setHeaderHeightVar();
+  window.addEventListener('load', setHeaderHeightVar, { once:true });
+  window.addEventListener('resize', setHeaderHeightVar, { passive:true });
+
+  /* ===== NAV burger + smooth scroll ===== */
   if (burger && topbar){
     burger.addEventListener("click", () => {
       const open = topbar.classList.toggle("open");
@@ -33,18 +42,20 @@
     });
   });
 
-  /* ===== Robust scrollspy (accounts for header height) ===== */
+  /* ===== Robust scrollspy (accounts for fixed header height) ===== */
   const spyLinks = [...document.querySelectorAll('[data-spy]')];
   const sectionIds = ["#start","#about","#experience","#projects","#contact"];
   const sections = sectionIds.map(id=>document.querySelector(id)).filter(Boolean);
+  let io;
 
   function setupSpy(){
+    if (io) io.disconnect();
     if (!("IntersectionObserver" in window) || !sections.length) {
       spyLinks[0]?.classList.add('active');
       return;
     }
-    const headerH = (topbar?.offsetHeight || 64);
-    const io = new IntersectionObserver(entries=>{
+    const headerH = Math.max(56, topbar?.getBoundingClientRect().height || 64);
+    io = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           const id="#"+entry.target.id;
@@ -56,7 +67,7 @@
     sections.forEach(sec => io.observe(sec));
   }
   setupSpy();
-  window.addEventListener('resize', () => setupSpy(), { passive:true });
+  window.addEventListener('resize', setupSpy, { passive:true });
 
   /* ===== Reveal on scroll ===== */
   const revealEls=[...document.querySelectorAll("[data-reveal]")];
