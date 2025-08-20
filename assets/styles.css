@@ -29,7 +29,7 @@ a{color:inherit; text-decoration:none}
 .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
 .skip:focus{position:fixed; left:12px; top:12px; width:auto; height:auto; padding:8px 12px; border-radius:10px; background:#11151c; outline:2px solid var(--y-300)}
 
-/* ===== NAV (más grande + active gradient) ===== */
+/* ===== NAV ===== */
 .topbar{position:sticky; top:0; z-index:20; backdrop-filter:saturate(120%) blur(10px);
   background:rgba(11,13,18,.65); border-bottom:1px solid rgba(255,255,255,.06)}
 .topbar-inner{max-width:1200px; margin:0 auto; padding:12px 16px;
@@ -74,7 +74,7 @@ a{color:inherit; text-decoration:none}
   .topbar.open .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
 }
 
-/* ===== Orbs suaves (decoración) ===== */
+/* ===== Orbs decorativas ===== */
 .orbs{position:fixed; inset:-20% -10% -10% -10%; pointer-events:none; z-index:0; filter:blur(40px); opacity:.32}
 .orb{position:absolute; width:40vmax; height:40vmax; border-radius:50%}
 .orb.y1{background:radial-gradient(circle at 30% 30%, rgba(255,214,10,.18), transparent 60%); left:-10%; top:-10%; animation:float1 24s ease-in-out infinite}
@@ -85,14 +85,41 @@ a{color:inherit; text-decoration:none}
 @keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(4%,-6%)}}
 
 /* ===== HERO ===== */
-.hero-full{position:relative; min-height:92vh; display:flex; align-items:center; isolation:isolate;}
-.particles{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0}
+.hero-full{
+  --mx:50%; --my:50%;
+  position:relative; min-height:92vh; display:flex; align-items:center; isolation:isolate;
+}
+.hero-full::after{
+  /* Glow que sigue al cursor (sin librerías) */
+  content:""; position:absolute; inset:-10%; pointer-events:none; z-index:0;
+  background:radial-gradient(600px at var(--mx) var(--my), rgba(255,214,10,.18), transparent 60%);
+  transition:background-position .08s linear;
+}
 .hero-content{position:relative; z-index:1; max-width:900px; padding:110px 0 95px;}
 .hero-title{font-size:clamp(46px,9vw,120px); font-weight:800; line-height:1.05; letter-spacing:-.02em; margin:0 0 18px}
 .brand-grad{
   background:linear-gradient(90deg,#fff2a6 0%,var(--y-300) 40%,var(--y-500) 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
+
+/* Confeti CSS-only */
+.sparks{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none}
+.sparks span{position:absolute; width:10px; height:10px; background:rgba(255,214,10,.18); border-radius:2px; animation:drift var(--dur) linear infinite; transform:translateY(-120%); opacity:.7}
+@keyframes drift{to{transform:translateY(120vh) rotate(360deg)}}
+/* posiciones/velocidades distintas */
+.sparks span:nth-child(1){left:6%;  --dur:18s}
+.sparks span:nth-child(2){left:18%; --dur:22s}
+.sparks span:nth-child(3){left:28%; --dur:20s}
+.sparks span:nth-child(4){left:38%; --dur:25s}
+.sparks span:nth-child(5){left:48%; --dur:19s}
+.sparks span:nth-child(6){left:58%; --dur:21s}
+.sparks span:nth-child(7){left:68%; --dur:24s}
+.sparks span:nth-child(8){left:78%; --dur:20s}
+.sparks span:nth-child(9){left:86%; --dur:23s}
+.sparks span:nth-child(10){left:12%; --dur:26s}
+.sparks span:nth-child(11){left:54%; --dur:27s}
+.sparks span:nth-child(12){left:92%; --dur:22s}
+
 /* Scroll centrado */
 .scroll-indicator{
   position:absolute; left:50%; bottom:22px; transform:translateX(-50%);
@@ -138,7 +165,7 @@ footer a.link:hover{text-decoration:underline}
 .toplink{opacity:.9}
 .toplink:hover{text-decoration:underline}
 
-/* Reveal solo si hay JS */
+/* Reveal */
 .js [data-reveal]{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
 .js [data-reveal].in{opacity:1; transform:none}
 
