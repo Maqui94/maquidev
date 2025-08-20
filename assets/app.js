@@ -1,25 +1,28 @@
-/* app.js — nav + secure links + scrollspy + cursor glow + scroll progress/header compact*/
+/* app.js — nav + secure links + robust scrollspy + cursor glow + icons */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
 
-  // ===== XOR obfuscation =====
+  /* ===== XOR obfuscation ===== */
   function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
-  const MAIL=[106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7;
-  const REV_ALIAS=[102,99,117,110,102,105,125,50,100,63], REV_KEY=7;
-  const GH_USER=[106,102,118,114,110,62,51], GH_KEY=7;
+  const MAIL      = [106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7;
+  const REV_ALIAS = [102,99,117,110,102,105,125,50,100,63], REV_KEY=7;
+  const GH_USER   = [106,102,118,114,110,62,51], GH_KEY=7;
 
   function openDonate(){ window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener"); }
   function openGithub(){ window.open(["https","://","github",".","com","/",xorDecode(GH_USER,GH_KEY)].join(""),"_blank","noopener"); }
   function openMail(){ window.location.href="mailto:"+xorDecode(MAIL,MAIL_KEY); }
 
-  // ===== NAV burger + smooth scroll =====
-  const topbar=document.querySelector(".topbar");
-  const burger=document.querySelector(".burger");
-  const navLinks=[...document.querySelectorAll('nav a[href^="#"]')];
+  /* ===== NAV burger + smooth scroll ===== */
+  const topbar = document.querySelector(".topbar");
+  const burger = document.querySelector(".burger");
+  const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
 
-  if(burger&&topbar){
-    burger.addEventListener("click",()=>{ const open=topbar.classList.toggle("open"); burger.setAttribute("aria-expanded",String(open)); });
+  if (burger && topbar){
+    burger.addEventListener("click", () => {
+      const open = topbar.classList.toggle("open");
+      burger.setAttribute("aria-expanded", String(open));
+    });
   }
   navLinks.forEach(a=>{
     a.addEventListener("click",e=>{
@@ -30,26 +33,32 @@
     });
   });
 
-  // ===== Scrollspy (yellow chip on active) =====
-  const spyLinks=[...document.querySelectorAll('[data-spy]')];
-  const sections=["#start","#about","#experience","#projects","#contact"]
-        .map(id=>document.querySelector(id)).filter(Boolean);
+  /* ===== Robust scrollspy (accounts for header height) ===== */
+  const spyLinks = [...document.querySelectorAll('[data-spy]')];
+  const sectionIds = ["#start","#about","#experience","#projects","#contact"];
+  const sections = sectionIds.map(id=>document.querySelector(id)).filter(Boolean);
 
-  if("IntersectionObserver" in window && sections.length){
-    const io=new IntersectionObserver(entries=>{
+  function setupSpy(){
+    if (!("IntersectionObserver" in window) || !sections.length) {
+      spyLinks[0]?.classList.add('active');
+      return;
+    }
+    const headerH = (topbar?.offsetHeight || 64);
+    const io = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           const id="#"+entry.target.id;
-          spyLinks.forEach(lnk=>lnk.classList.toggle("active",lnk.getAttribute("href")===id));
+          spyLinks.forEach(lnk=>lnk.classList.toggle("active", lnk.getAttribute("href")===id));
         }
       });
-    },{rootMargin:"-40% 0px -50% 0px",threshold:[0,0.25,0.6,1]});
-    sections.forEach(sec=>io.observe(sec));
-  } else {
-    spyLinks[0]?.classList.add('active');
-  }
+    }, { rootMargin: `-${headerH + 6}px 0px -55% 0px`, threshold: [0, 0.25, 0.6, 1] });
 
-  // ===== Reveal on scroll =====
+    sections.forEach(sec => io.observe(sec));
+  }
+  setupSpy();
+  window.addEventListener('resize', () => setupSpy(), { passive:true });
+
+  /* ===== Reveal on scroll ===== */
   const revealEls=[...document.querySelectorAll("[data-reveal]")];
   if("IntersectionObserver" in window && revealEls.length){
     const rio=new IntersectionObserver(entries=>{
@@ -58,37 +67,22 @@
     revealEls.forEach(el=>rio.observe(el));
   } else { revealEls.forEach(el=>el.classList.add("in")); }
 
-  // ===== Cursor glow (move radial center with the pointer) =====
+  /* ===== Cursor glow (move radial in hero) ===== */
   const hero=document.querySelector(".hero-full");
   if(hero){
     let raf;
     function update(e){
       const rect=hero.getBoundingClientRect();
-      const x=(e.clientX - rect.left)+"px";
-      const y=(e.clientY - rect.top)+"px";
-      hero.style.setProperty("--mx", x);
-      hero.style.setProperty("--my", y);
+      hero.style.setProperty("--mx", (e.clientX - rect.left) + "px");
+      hero.style.setProperty("--my", (e.clientY - rect.top) + "px");
     }
     const onMove=(e)=>{ cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>update(e)); };
     hero.addEventListener("pointermove", onMove);
-    hero.style.setProperty("--mx","50%");
-    hero.style.setProperty("--my","50%");
+    hero.style.setProperty("--mx","50%"); hero.style.setProperty("--my","50%");
   }
 
-  // ===== Scroll progress + compact header =====
-  const docEl = document.documentElement;
-  const onScroll = () => {
-    const max = docEl.scrollHeight - docEl.clientHeight;
-    const p = max > 0 ? (window.scrollY / max) : 0;
-    docEl.style.setProperty('--scroll', p.toFixed(4));
-    if (topbar) topbar.classList.toggle('compact', window.scrollY > 80);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // ===== Buttons (CTA / footer / extras) =====
+  /* ===== CTA / footer ===== */
   const navDonate=document.getElementById("nav-donate");
-  const contactInvite=document.getElementById("contact-invite");
   const gh=document.getElementById("btn-github");
   const em=document.getElementById("btn-mail");
   const em2=document.getElementById("btn-mail-2");
@@ -96,7 +90,6 @@
   const fm=document.getElementById("f-mail");
 
   if(navDonate) navDonate.addEventListener("click",openDonate);
-  if(contactInvite) contactInvite.addEventListener("click",openDonate);
   if(gh) gh.addEventListener("click",openGithub);
   if(em) em.addEventListener("click",openMail);
   if(em2) em2.addEventListener("click",openMail);
@@ -105,4 +98,9 @@
 
   const y=document.getElementById("y");
   if(y) y.textContent=new Date().getFullYear();
+
+  /* ===== Lucide icons ===== */
+  window.addEventListener('load', () => {
+    if (window.lucide?.createIcons) window.lucide.createIcons();
+  });
 })();
