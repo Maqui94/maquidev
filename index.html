@@ -4,11 +4,11 @@
   <!-- ========= META ========= -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maquidev · LandingPage</title>
+  <title>Maquidev — IA & Web · Proyectos y recursos</title>
   <meta name="description" content="Proyectos de IA y web de @maquidev. Enlaces rápidos y cómo invitar un café ☕.">
   <meta name="theme-color" content="#FFD60A">
-  <meta property="og:title" content="@maquidev · Proyectos + apoyar">
-  <meta property="og:description" content="Proyectos de IA y web de @maquidev. Enlaces rápidos y cómo invitar un café ☕.">
+  <meta property="og:title" content="Maquidev — IA & Web">
+  <meta property="og:description" content="Proyectos reales, recursos útiles y cómo invitar un café ☕.">
   <meta property="og:type" content="website">
 
   <!-- Favicon set -->
@@ -24,12 +24,31 @@
   <link rel="preload" as="image" href="./assets/avatar.webp">
   <link rel="preload" as="image" href="./assets/maquidev_bg.svg">
 
-  <!-- CSS externo -->
+  <!-- CSS -->
   <link rel="stylesheet" href="./assets/styles.css">
-  <link rel="stylesheet" href="./assets/styles.css?v=1">
-<script src="./assets/app.js?v=1" defer></script>
 </head>
 <body>
+  <!-- ====== NAV SUPERIOR FIJO ====== -->
+  <a href="#inicio" class="skip">Saltar al contenido</a>
+  <header class="topbar" role="navigation" aria-label="Principal">
+    <div class="topbar-inner">
+      <a href="#inicio" class="brand" aria-label="Volver al inicio">
+        <img src="./assets/favicon-32.png" alt="" width="24" height="24" loading="lazy">
+        <span>Maquidev</span>
+      </a>
+      <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navmenu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="navmenu" class="nav">
+        <a href="#inicio" data-spy>Inicio</a>
+        <a href="#proyectos" data-spy>Proyectos</a>
+        <a href="#apoyar" data-spy>Apoyar</a>
+        <a href="#contacto" data-spy>Contacto</a>
+        <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invitar un café">☕ Invitar</button>
+      </nav>
+    </div>
+  </header>
+
   <!-- Fondo animado (decorativo) -->
   <div class="orbs" aria-hidden="true">
     <div class="orb y1"></div>
@@ -38,54 +57,54 @@
   </div>
 
   <main class="wrap">
-    <!-- ====== HERO ====== -->
-    <header class="hero cv" aria-label="Cabecera">
-      <figure class="avatar" aria-label="Avatar de @maquidev">
-        <!-- ✅ RUTA CORRECTA A TU FOTO EN /assets -->
-        <picture>
-          <source srcset="./assets/avatar.webp" type="image/webp">
-          <!-- Si NO tienes avatar.jpg, dejamos el mismo .webp como fallback -->
-          <img src="./assets/avatar.webp" alt="Adrián Maquirriain (@maquidev)" width="160" height="200" loading="eager" decoding="async">
-        </picture>
-      </figure>
+    <!-- ====== INICIO / HERO ====== -->
+    <section id="inicio" class="section cv hero-section" aria-label="Inicio">
+      <header class="hero" aria-label="Cabecera">
+        <figure class="avatar" aria-label="Avatar de @maquidev">
+          <picture>
+            <source srcset="./assets/avatar.webp" type="image/webp">
+            <img src="./assets/avatar.webp" alt="Adrián Maquirriain (@maquidev)" width="160" height="200" loading="eager" decoding="async">
+          </picture>
+        </figure>
 
-      <div>
-        <h1>@maquidev</h1>
-        <p class="muted">IA, web y ideas claras. Proyectos reales y recursos que ahorran tiempo.</p>
-        <div class="tags">
-          <span class="tag">IA</span><span class="tag">Dev</span><span class="tag">Web</span>
+        <div>
+          <h1 class="h1">Creador de <span class="accent">IA & Web</span><br>ideas claras, proyectos reales</h1>
+          <p class="muted">Comparto lo que hago y lo que aprendo. Recursos que ahorran tiempo y funcionan.</p>
+          <div class="tags">
+            <span class="tag">IA</span><span class="tag">Dev</span><span class="tag">Web</span>
+          </div>
+          <div class="actions">
+            <button id="btn-donate" class="btn btn-primary" type="button" aria-label="Invitar un café">
+              <span class="ico">☕</span> Invitar un café
+            </button>
+            <button id="btn-github" class="btn" type="button" aria-label="Ver GitHub">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.09-.74.09-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.8.42-1.33.77-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.23-.13-.31-.54-1.56.12-3.24 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.23 0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
+              </span>
+              GitHub
+            </button>
+            <button id="btn-mail" class="btn" type="button" aria-label="Enviar email">✉️ Contacto</button>
+          </div>
+          <a class="scroll-hint" href="#proyectos" aria-label="Ir a proyectos">Desliza para explorar ↓</a>
         </div>
-        <div class="actions">
-          <!-- Enlaces sensibles se activan por JS (no quedan expuestos en HTML) -->
-          <button id="btn-donate" class="btn btn-primary" type="button" aria-label="Invitar un café">
-            <span class="ico">☕</span> Invitar un café
-          </button>
-          <button id="btn-github" class="btn" type="button" aria-label="Ver GitHub">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.794 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.09-.74.09-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.8.42-1.33.77-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.23-.13-.31-.54-1.56.12-3.24 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.68.25 2.93.12 3.24.78.85 1.25 1.92 1.25 3.23 0 4.61-2.8 5.62-5.47 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
-            </span>
-            GitHub
-          </button>
-          <button id="btn-mail" class="btn" type="button" aria-label="Enviar email">✉️ Contacto</button>
-        </div>
-      </div>
-    </header>
+      </header>
+    </section>
 
     <!-- ====== PROYECTOS ====== -->
-    <section class="section cv" aria-labelledby="titulo-proyectos">
-      <h2 id="titulo-proyectos">Proyectos</h2>
+    <section id="proyectos" class="section cv" aria-labelledby="titulo-proyectos">
+      <h2 id="titulo-proyectos" class="h2">Proyectos</h2>
       <p class="muted">Selección rápida. Haz clic para ver cada uno.</p>
 
       <div class="projects">
-        <!-- PROYECTO 1 — Estado: En proceso -->
+        <!-- PROYECTO 1 — En proceso -->
         <article class="card">
           <h3>Oposiciones · Test web</h3>
-          <p>Prepárate las oposiciones de la Policía Foral con tests online gratis, basados en el temario y listos para practicar al instante.
-Este proyecto nace para quitar fricción al estudio: sin registro, sin complicaciones, con preguntas claras y modos de juego eficaces.
-Nuestro objetivo: que memorices más en menos tiempo con práctica diaria, feedback inmediato y sesiones cortas que encajan en tu rutina.
-Entra ahora, elige Examen, Repaso o Flashcards, comparte sugerencias y únete a la comunidad que entrena cada día para su plaza.
-Tecnologías: HTML5, CSS3 y JavaScript (vanilla) con JSON y LocalStorage; alojamiento en GitHub Pages para una experiencia rápida y ligera.</p>
-
+          <p>Tests online de la Policía Foral: práctica sin fricción, modos examen/repaso/flashcards y feedback inmediato.</p>
+          <ul class="bullets">
+            <li>Problema: estudiar sin perder foco.</li>
+            <li>Solución: sesiones cortas y claras.</li>
+            <li>Resultado: memorizas más en menos tiempo.</li>
+          </ul>
           <div class="tech" style="margin:8px 0 10px">
             <span class="status st-progress" title="En proceso">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4v8l6 3.5-1-1.73-5-2.77V2z"/></svg>
@@ -93,22 +112,20 @@ Tecnologías: HTML5, CSS3 y JavaScript (vanilla) con JSON y LocalStorage; alojam
             </span>
             <span class="tech-dot" title="Tecnología">Web</span>
           </div>
-
           <div class="actions">
             <a class="btn" href="https://maqui94.github.io/oposiciones-test/index.html" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a>
           </div>
         </article>
 
-        <!-- PROYECTO 2 — Estado: Empezando -->
+        <!-- PROYECTO 2 — Empezando -->
         <article class="card">
           <h3>Studify Assistant (preview)</h3>
-          <p>Convierte tu PDF en un generador de preguntas tipo test: la IA lee y “memoriza” el contenido y crea 15–20 preguntas por página listas para usar.
-Nace para ahorrar horas y desbloquearte cuando no sabes qué más poner: exámenes rápidos, coherentes y eficaces en un clic.
-Objetivo: acelerar la preparación de oposiciones y exámenes con cuestionarios de calidad y resultados reutilizables.
-Cómo usarla: entra, sube tu PDF, revisa y descarga el JSON; intégralo en apps dinámicas como https://maqui94.github.io/oposiciones-test/index.html
-.
-Tecnologías: lectura de PDF + IA (NLP), generación automática de ítems, JSON descargable y flujo 100% web, desde cualquier dispositivo.</p>
-
+          <p>Genera preguntas tipo test desde tus PDF con IA para exámenes rápidos y reutilizables.</p>
+          <ul class="bullets">
+            <li>Problema: crear ítems de calidad.</li>
+            <li>Solución: IA que sugiere 15–20 por página.</li>
+            <li>Resultado: horas ahorradas + consistencia.</li>
+          </ul>
           <div class="tech" style="margin:8px 0 10px">
             <span class="status st-starting" title="Empezando">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -116,7 +133,6 @@ Tecnologías: lectura de PDF + IA (NLP), generación automática de ítems, JSON
             </span>
             <span class="tech-dot" title="Tecnología">IA</span>
           </div>
-
           <div class="actions">
             <a class="btn" href="https://preview--studify-assistant.lovable.app/" target="_blank" rel="noopener noreferrer nofollow">Ver proyecto</a>
           </div>
@@ -124,13 +140,24 @@ Tecnologías: lectura de PDF + IA (NLP), generación automática de ítems, JSON
       </div>
     </section>
 
-    <!-- ====== APOYO ====== -->
-    <section class="section cv" aria-labelledby="titulo-apoyar">
-      <h2 id="titulo-apoyar">Apoya los proyecto</h2>
-      <p class="muted">Si te ayuda mi trabajo o quieres que sigan adelante, puedes invitarme un café. Gracias por la confianza ☕</p>
+    <!-- ====== APOYAR ====== -->
+    <section id="apoyar" class="section cv" aria-labelledby="titulo-apoyar">
+      <h2 id="titulo-apoyar" class="h2">Apoya los proyectos</h2>
+      <p class="muted">Si te ayuda mi trabajo y quieres que siga, puedes invitarme un café. Gracias por la confianza ☕</p>
       <div class="actions">
         <button id="btn-donate-2" class="btn btn-primary" type="button">Invitar un café</button>
         <button id="btn-more" class="btn" type="button" aria-label="Más recursos">Más recursos</button>
+      </div>
+    </section>
+
+    <!-- ====== CONTACTO / REDES ====== -->
+    <section id="contacto" class="section cv" aria-labelledby="titulo-contacto">
+      <h2 id="titulo-contacto" class="h2">Contacto</h2>
+      <p class="muted">DMs abiertos. También por email.</p>
+      <div class="actions">
+        <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer">Discord</a>
+        <button id="btn-mail-2" class="btn" type="button">✉️ Email</button>
       </div>
     </section>
   </main>
@@ -138,20 +165,19 @@ Tecnologías: lectura de PDF + IA (NLP), generación automática de ítems, JSON
   <!-- ====== FOOTER ====== -->
   <footer>
     <div class="inner">
-      <div>© <span id="y"></span> 
-  <a class="brand-link" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de @maquidev">
-    @maquidev
-  </a> ·
-</div>
+      <div>© <span id="y"></span>
+        <a class="brand-link" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de @maquidev">@maquidev</a>
+        · Enlaces y recursos · <a href="#inicio" class="toplink">Volver arriba ↑</a>
+      </div>
       <nav>
         <a id="f-github" class="link" href="#" role="link" aria-label="GitHub">GitHub</a>
         <a id="f-mail" class="link" href="#" role="link" aria-label="Email">Contacto</a>
-        <a class="link" href="https://discord.gg/sEYHhqG9" target="_blank" rel="noopener noreferrer" aria-label="Discord">Discord</a>
+        <a class="link" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer" aria-label="Discord">Discord</a>
       </nav>
     </div>
   </footer>
 
-  <!-- JS externo -->
+  <!-- JS -->
   <script src="./assets/app.js" defer></script>
 
   <noscript>
