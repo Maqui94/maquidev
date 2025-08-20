@@ -10,10 +10,16 @@
   <meta property="og:title" content="@maquidev · Proyectos + apoyar">
   <meta property="og:description" content="Proyectos de IA y web de @maquidev. Enlaces rápidos y cómo invitar un café ☕.">
   <meta property="og:type" content="website">
-
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="./assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="alternate icon" href="./assets/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="./assets/favicon-180.png" sizes="180x180">
+<link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#FFD60A">
+<meta name="msapplication-TileColor" content="#0b0d12">
+<meta name="theme-color" content="#FFD60A">
   <!-- Preload avatar (usa /assets/avatar.webp o .jpg) -->
   <link rel="preload" as="image" href="./assets/avatar.webp">
-
+  <link rel="preload" as="image" href="./assets/maquidev_bg.svg">
   <!-- ========= ESTILOS ========= -->
   <style>
     /* ====== Paleta / Tokens ====== */
@@ -50,6 +56,11 @@
       margin:0; color:var(--fg-0); background:var(--bg-0);
       font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
       overflow-x:hidden;
+       background-color:#0b0d12;
+    background-image:url("./assets/maquidev_bg.svg");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:820px; margin:0 auto; padding:28px; position:relative; z-index:2}
@@ -131,6 +142,9 @@
       .hero{flex-direction:column; align-items:flex-start}
       .avatar{width:140px}
     }
+     @media (min-width: 1024px){
+    body{ background-attachment:fixed; }
+  }
   </style>
 </head>
 <body>
