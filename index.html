@@ -32,18 +32,15 @@
   <!-- ===== NAV (fixed) ===== -->
   <header class="topbar" role="navigation" aria-label="Primary">
     <div class="topbar-inner">
-      <!-- Brand (logo + name) -->
       <a href="#start" class="brand" aria-label="Go to start">
         <img class="brand-mark" src="./assets/favicon.svg" alt="" width="40" height="40" decoding="async" loading="lazy" />
         <span class="brand-name">MAQUIDEV</span>
       </a>
 
-      <!-- Burger -->
       <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu">
         <span></span><span></span><span></span>
       </button>
 
-      <!-- Nav -->
       <nav id="navmenu" class="nav">
         <a href="#about"      data-spy>About</a>
         <a href="#experience" data-spy>Experience</a>
@@ -51,7 +48,6 @@
         <a href="#contact"    data-spy>Contact</a>
       </nav>
 
-      <!-- CTA -->
       <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invite a coffee">☕ Invite</button>
     </div>
   </header>
@@ -66,11 +62,17 @@
     <section id="start" class="hero-full" aria-label="Hero">
       <!-- Confetti -->
       <div class="sparks" aria-hidden="true">
-        <!-- 36 partículas (puedes duplicar este bloque para + densidad) -->
+        <!-- 48 spans (puedes añadir más si quieres) -->
+        <!-- 1–12 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- 13–24 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- 25–36 -->
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- 37–48 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
@@ -122,14 +124,9 @@
         <figure class="about-photo polaroid" aria-label="Photo of Adrián Maquirriain">
           <span class="tape t1" aria-hidden="true"></span>
           <span class="tape t2" aria-hidden="true"></span>
-
           <picture>
             <source srcset="./assets/avatar.webp" type="image/webp">
-            <img
-              src="./assets/avatar.webp"
-              alt="Adrián Maquirriain (Maquidev)"
-              width="420" height="525"
-              loading="lazy" decoding="async">
+            <img src="./assets/avatar.webp" alt="Adrián Maquirriain (Maquidev)" width="420" height="525" loading="lazy" decoding="async">
           </picture>
           <figcaption>
             <strong>Adrián Maquirriain</strong>
@@ -217,32 +214,29 @@
           <h2 id="t-contact" class="h2">Contact</h2>
           <p class="muted">DMs are open. Email works too.</p>
 
-          <!-- Social buttons -->
+          <!-- Redes: icono + texto (todos enlaces reales) -->
           <div class="actions socials">
-            <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <i data-lucide="instagram" aria-hidden="true"></i> Instagram
+            <a class="btn" href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="github"></i> GitHub
             </a>
-            <a class="btn" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i data-lucide="linkedin" aria-hidden="true"></i> LinkedIn
+            <a class="btn" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="linkedin"></i> LinkedIn
             </a>
-            <a class="btn" href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <i data-lucide="github" aria-hidden="true"></i> GitHub
+            <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="instagram"></i> Instagram
             </a>
-            <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-              <i data-lucide="discord" aria-hidden="true"></i> Discord
+            <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="discord"></i> Discord
             </a>
-            <button id="btn-mail-2" class="btn" type="button" aria-label="Email">
-              <i data-lucide="mail" aria-hidden="true"></i> Email
-            </button>
+            <!-- mail se rellena por JS con href=mailto:... -->
+            <a id="mail-link" class="btn" href="#" rel="noopener noreferrer">
+              <i data-lucide="mail"></i> Email
+            </a>
           </div>
         </div>
 
         <figure class="contact-ill">
-          <img
-            src="./assets/maquidev-contacta.png"
-            alt="Cartoon illustration for contact"
-            width="640" height="640"
-            loading="lazy" decoding="async">
+          <img src="./assets/maquidev-contacta.png" alt="Cartoon illustration for contact" width="640" height="640" loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -255,17 +249,16 @@
         · <a href="#start" class="toplink">Back to top ↑</a>
       </div>
       <!-- Solo iconos -->
-      <nav class="footer-icons">
-        <a class="iconlink" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-        <a class="iconlink" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-        <a class="iconlink" href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i data-lucide="github"></i></a>
-        <a class="iconlink" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i data-lucide="discord"></i></a>
-        <a id="f-mail" class="iconlink" href="#" role="link" aria-label="Email"><i data-lucide="mail"></i></a>
+      <nav class="foot-socials">
+        <a href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i data-lucide="github"></i></a>
+        <a href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a id="foot-mail" href="#" aria-label="Email"><i data-lucide="mail"></i></a>
       </nav>
     </div>
   </footer>
 
-  <!-- Lucide Icons -->
+  <!-- Icons (Lucide) -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <!-- App -->
   <script src="./assets/app.js?v=14" defer></script>
