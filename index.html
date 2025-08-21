@@ -29,28 +29,38 @@
 <body>
   <a href="#start" class="skip">Skip to content</a>
 
-  <!-- ===== NAV (fixed) ===== -->
-  <header class="topbar" role="navigation" aria-label="Primary">
-    <div class="topbar-inner">
-      <a href="#start" class="brand" aria-label="Go to start">
-        <img class="brand-mark" src="./assets/favicon.svg" alt="" width="40" height="40" decoding="async" loading="lazy" />
-        <span class="brand-name">MAQUIDEV</span>
-      </a>
+<!-- ===== NAV (fixed) ===== -->
+<header class="topbar" role="navigation" aria-label="Primary">
+  <div class="topbar-inner">
+    <!-- Izquierda: logo -->
+    <a href="#start" class="brand" aria-label="Go to start">
+      <img class="brand-mark" src="./assets/favicon.svg" alt="" width="40" height="40" decoding="async" loading="lazy" />
+      <span class="brand-name">MAQUIDEV</span>
+    </a>
 
-      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu">
-        <span></span><span></span><span></span>
-      </button>
+    <!-- Centro (solo móvil): MAQUIDEV centrado -->
+    <span class="brand-center">MAQUIDEV</span>
 
-      <nav id="navmenu" class="nav">
-        <a href="#about"      data-spy>About</a>
-        <a href="#experience" data-spy>Experience</a>
-        <a href="#projects"   data-spy>Projects</a>
-        <a href="#contact"    data-spy>Contact</a>
-      </nav>
+    <!-- Derecha: hamburguesa -->
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu">
+      <span></span><span></span><span></span>
+    </button>
 
-      <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invite a coffee">☕ Invite</button>
-    </div>
-  </header>
+    <!-- Menú -->
+    <nav id="navmenu" class="nav">
+      <a href="#about"      data-spy>About</a>
+      <a href="#experience" data-spy>Experience</a>
+      <a href="#projects"   data-spy>Projects</a>
+      <a href="#contact"    data-spy>Contact</a>
+
+      <!-- CTA SOLO móvil (dentro del menú) -->
+      <button id="nav-donate-m" class="btn btn-primary mobile-only" type="button" aria-label="Invite a coffee">☕ Invite</button>
+    </nav>
+
+    <!-- CTA escritorio -->
+    <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invite a coffee">☕ Invite</button>
+  </div>
+</header>
 
   <!-- Soft background (orbs) -->
   <div class="orbs" aria-hidden="true">

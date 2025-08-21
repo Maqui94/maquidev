@@ -8,11 +8,14 @@
   const MAIL      = [106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7;
   const REV_ALIAS = [102,99,117,110,102,105,125,50,100,63], REV_KEY=7;
 
-  function openDonate(){ window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener"); }
+  function openDonate(){
+    window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener");
+  }
 
   // Elements
-  const topbar = document.querySelector(".topbar");
-  const burger = document.querySelector(".burger");
+  const topbar   = document.querySelector(".topbar");
+  const burger   = document.querySelector(".burger");
+  const nav      = document.getElementById("navmenu");
   const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
 
   // ===== Compute and expose header height
@@ -31,12 +34,25 @@
       burger.setAttribute("aria-expanded", String(open));
     });
   }
+  // cierre del menú al pulsar fuera (mejora UX móvil)
+  document.addEventListener('click', (e) => {
+    if (!topbar.classList.contains('open')) return;
+    if (!topbar.contains(e.target)) {
+      topbar.classList.remove('open');
+      burger.setAttribute("aria-expanded","false");
+    }
+  });
+
   navLinks.forEach(a=>{
     a.addEventListener("click",e=>{
       const href=a.getAttribute("href"); if(!href||href[0]!=="#") return;
       const target=document.querySelector(href); if(!target) return;
-      e.preventDefault(); target.scrollIntoView({behavior:"smooth",block:"start"});
-      if(topbar.classList.contains("open")){ topbar.classList.remove("open"); burger.setAttribute("aria-expanded","false"); }
+      e.preventDefault();
+      target.scrollIntoView({behavior:"smooth",block:"start"});
+      if(topbar.classList.contains("open")){
+        topbar.classList.remove("open");
+        burger.setAttribute("aria-expanded","false");
+      }
     });
   });
 
@@ -84,18 +100,18 @@
     };
     const onMove=(e)=>{ cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>update(e)); };
     hero.addEventListener("pointermove", onMove);
-    hero.style.setProperty("--mx","50%"); hero.style.setProperty("--my","50%");
+    hero.style.setProperty("--mx","50%");
+    hero.style.setProperty("--my","50%");
   }
 
-  // ===== CTA donate
-  document.getElementById("nav-donate")?.addEventListener("click", openDonate);
+  // ===== CTA donate (desktop y móvil)
+  document.getElementById("nav-donate")?.addEventListener("click", openDonate);     // desktop
+  document.getElementById("nav-donate-m")?.addEventListener("click", openDonate);   // móvil (dentro del menú)
 
   // ===== Safe mail links (contact + footer)
   const mailto = "mailto:" + xorDecode(MAIL, MAIL_KEY);
-  const mailLink = document.getElementById("mail-link");
-  const footMail = document.getElementById("foot-mail");
-  if (mailLink) mailLink.setAttribute("href", mailto);
-  if (footMail) footMail.setAttribute("href", mailto);
+  document.getElementById("mail-link")?.setAttribute("href", mailto);
+  document.getElementById("foot-mail")?.setAttribute("href", mailto);
 
   // Year
   const y=document.getElementById("y");
