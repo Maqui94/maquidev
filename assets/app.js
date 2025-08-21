@@ -1,9 +1,18 @@
-/* app.js — fixed header offset + nav + scrollspy + cursor glow + icons + safe mail */
+// assets/app.js
+/* ==========================================================================
+   Maquidev Landing – JS
+   - Header fijo + burger
+   - Scroll suave + cierre de menú en clic externo
+   - Scrollspy robusto (sin “flicker” entre secciones)
+   - Glow del cursor en héroe
+   - Mail protegido (XOR) y CTA “Invite”
+   - Lucide icons inicializados en idle (no bloquea render)
+   ========================================================================== */
 (function () {
   "use strict";
   document.documentElement.classList.add('js');
 
-  // ===== Minimal XOR obfuscation (mail + donate)
+  // --- Pequeña ofuscación XOR (correo + alias donate)
   function xorDecode(arr, key){ return String.fromCharCode.apply(null, arr.map(n => n ^ key)); }
   const MAIL      = [106,102,118,114,110,41,99,98,113,98,107,104,119,71,96,106,102,110,107,41,100,104,106], MAIL_KEY=7;
   const REV_ALIAS = [102,99,117,110,102,105,125,50,100,63], REV_KEY=7;
@@ -12,13 +21,13 @@
     window.open(["https","://","revolut",".","me","/",xorDecode(REV_ALIAS,REV_KEY)].join(""),"_blank","noopener");
   }
 
-  // Elements
+  // --- Elementos
   const topbar   = document.querySelector(".topbar");
   const burger   = document.querySelector(".burger");
   const nav      = document.getElementById("navmenu");
   const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
 
-  // ===== Compute and expose header height
+  // --- Expone altura de header (para compensar anclas y rootMargin)
   function setHeaderHeightVar() {
     const h = Math.max(56, topbar?.getBoundingClientRect().height || 64);
     document.documentElement.style.setProperty('--header-h', h + 'px');
@@ -27,14 +36,14 @@
   window.addEventListener('load', setHeaderHeightVar, { once:true });
   window.addEventListener('resize', setHeaderHeightVar, { passive:true });
 
-  // ===== NAV burger + smooth scroll
+  // --- Burger + apertura/cierre
   if (burger && topbar){
     burger.addEventListener("click", () => {
       const open = topbar.classList.toggle("open");
       burger.setAttribute("aria-expanded", String(open));
     });
   }
-  // cierre del menú al pulsar fuera (mejora UX móvil)
+  // Cierra menú al pulsar fuera
   document.addEventListener('click', (e) => {
     if (!topbar.classList.contains('open')) return;
     if (!topbar.contains(e.target)) {
@@ -43,10 +52,13 @@
     }
   });
 
+  // --- Enlaces internos con scroll suave + cierre de menú
   navLinks.forEach(a=>{
     a.addEventListener("click",e=>{
-      const href=a.getAttribute("href"); if(!href||href[0]!=="#") return;
-      const target=document.querySelector(href); if(!target) return;
+      const href=a.getAttribute("href");
+      if(!href || href[0] !== "#") return;
+      const target=document.querySelector(href);
+      if(!target) return;
       e.preventDefault();
       target.scrollIntoView({behavior:"smooth",block:"start"});
       if(topbar.classList.contains("open")){
@@ -56,7 +68,7 @@
     });
   });
 
-  // ===== Scrollspy (robusto)
+  // --- Scrollspy robusto (IO con rootMargin compensando header)
   const spyLinks = [...document.querySelectorAll('[data-spy]')];
   const sections = ["#start","#about","#experience","#projects","#contact"]
     .map(id=>document.querySelector(id)).filter(Boolean);
@@ -80,7 +92,7 @@
   setupSpy();
   window.addEventListener('resize', setupSpy, { passive:true });
 
-  // ===== Reveal on scroll
+  // --- Reveal on scroll (no interfiere con scrollspy)
   const revealEls=[...document.querySelectorAll("[data-reveal]")];
   if("IntersectionObserver" in window && revealEls.length){
     const rio=new IntersectionObserver(entries=>{
@@ -89,7 +101,7 @@
     revealEls.forEach(el=>rio.observe(el));
   } else { revealEls.forEach(el=>el.classList.add("in")); }
 
-  // ===== Cursor glow in hero
+  // --- Cursor glow en hero (rAF para evitar jank)
   const hero=document.querySelector(".hero-full");
   if(hero){
     let raf;
@@ -104,21 +116,24 @@
     hero.style.setProperty("--my","50%");
   }
 
-  // ===== CTA donate (desktop y móvil)
+  // --- CTA donate (desktop y móvil)
   document.getElementById("nav-donate")?.addEventListener("click", openDonate);     // desktop
   document.getElementById("nav-donate-m")?.addEventListener("click", openDonate);   // móvil (dentro del menú)
 
-  // ===== Safe mail links (contact + footer)
+  // --- Enlaces mail (contact + footer) con ofuscación simple
   const mailto = "mailto:" + xorDecode(MAIL, MAIL_KEY);
   document.getElementById("mail-link")?.setAttribute("href", mailto);
   document.getElementById("foot-mail")?.setAttribute("href", mailto);
 
-  // Year
+  // --- Año dinámico
   const y=document.getElementById("y");
   if(y) y.textContent=new Date().getFullYear();
 
-  // ===== Lucide icons
+  // --- Lucide icons: inicializar en idle para no competir con render inicial
+  const onIdle = window.requestIdleCallback || function (cb){ return setTimeout(cb, 1); };
   window.addEventListener('load', () => {
-    if (window.lucide?.createIcons) window.lucide.createIcons();
+    onIdle(() => {
+      if (window.lucide?.createIcons) window.lucide.createIcons();
+    });
   });
 })();

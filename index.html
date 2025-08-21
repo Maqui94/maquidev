@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +11,14 @@
   <meta property="og:description" content="Creative developer & AI video creator. I build everyday helpful apps and entertainment content." />
   <meta property="og:type" content="website" />
 
+  <!-- Performance: DNS + TLS warmup para fuentes y CDN de iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+
+  <!-- Fonts (swap para evitar bloqueo de render) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
   <!-- Icons -->
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="./assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -18,49 +27,48 @@
   <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#FFD60A">
   <meta name="msapplication-TileColor" content="#0b0d12">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <!-- Preloads de imágenes “above the fold” -->
+  <link rel="preload" as="image" href="./assets/maquidev_bg.svg" imagesrcset>
+  <link rel="preload" as="image" href="./assets/maquidevlanding.png" imagesrcset>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./assets/styles.css?v=14" />
+  <link rel="stylesheet" href="./assets/styles.css?v=15" />
 </head>
 <body>
   <a href="#start" class="skip">Skip to content</a>
 
-<!-- ===== NAV (fixed) ===== -->
-<header class="topbar" role="navigation" aria-label="Primary">
-  <div class="topbar-inner">
-    <!-- Izquierda: logo -->
-    <a href="#start" class="brand" aria-label="Go to start">
-      <img class="brand-mark" src="./assets/favicon.svg" alt="" width="40" height="40" decoding="async" loading="lazy" />
-      <span class="brand-name">MAQUIDEV</span>
-    </a>
+  <!-- ===== NAV (fixed) ===== -->
+  <header class="topbar" role="navigation" aria-label="Primary">
+    <div class="topbar-inner">
+      <!-- Izquierda: logo -->
+      <a href="#start" class="brand" aria-label="Go to start">
+        <img class="brand-mark" src="./assets/favicon.svg" alt="" width="40" height="40" decoding="async" loading="lazy" />
+        <span class="brand-name">MAQUIDEV</span>
+      </a>
 
-    <!-- Centro (solo móvil): MAQUIDEV centrado -->
-    <span class="brand-center">MAQUIDEV</span>
+      <!-- Centro (solo móvil): MAQUIDEV centrado -->
+      <span class="brand-center">MAQUIDEV</span>
 
-    <!-- Derecha: hamburguesa -->
-    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu">
-      <span></span><span></span><span></span>
-    </button>
+      <!-- Derecha: hamburguesa -->
+      <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navmenu">
+        <span></span><span></span><span></span>
+      </button>
 
-    <!-- Menú -->
-    <nav id="navmenu" class="nav">
-      <a href="#about"      data-spy>About</a>
-      <a href="#experience" data-spy>Experience</a>
-      <a href="#projects"   data-spy>Projects</a>
-      <a href="#contact"    data-spy>Contact</a>
+      <!-- Menú -->
+      <nav id="navmenu" class="nav">
+        <a href="#about"      data-spy>About</a>
+        <a href="#experience" data-spy>Experience</a>
+        <a href="#projects"   data-spy>Projects</a>
+        <a href="#contact"    data-spy>Contact</a>
 
-      <!-- CTA SOLO móvil (dentro del menú) -->
-      <button id="nav-donate-m" class="btn btn-primary mobile-only" type="button" aria-label="Invite a coffee">☕ Invite</button>
-    </nav>
+        <!-- CTA SOLO móvil (dentro del menú) -->
+        <button id="nav-donate-m" class="btn btn-primary mobile-only" type="button" aria-label="Invite a coffee">☕ Invite</button>
+      </nav>
 
-    <!-- CTA escritorio -->
-    <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invite a coffee">☕ Invite</button>
-  </div>
-</header>
+      <!-- CTA escritorio (solo desktop por CSS) -->
+      <button id="nav-donate" class="btn btn-primary btn-cta" type="button" aria-label="Invite a coffee">☕ Invite</button>
+    </div>
+  </header>
 
   <!-- Soft background (orbs) -->
   <div class="orbs" aria-hidden="true">
@@ -72,7 +80,7 @@
     <section id="start" class="hero-full" aria-label="Hero">
       <!-- Confetti -->
       <div class="sparks" aria-hidden="true">
-        <!-- 48 spans (puedes añadir más si quieres) -->
+        <!-- 48 partículas (mantener para estética) -->
         <!-- 1–12 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
@@ -99,11 +107,12 @@
         </div>
 
         <figure class="hero-ill">
+          <!-- LCP: fetchpriority alto para mejorar tiempo “above the fold” -->
           <img
             src="./assets/maquidevlanding.png"
             alt="Cartoon illustration of Maquidev at the desk"
             width="768" height="1152"
-            loading="eager" decoding="async">
+            fetchpriority="high" loading="eager" decoding="async">
         </figure>
       </div>
 
@@ -149,6 +158,8 @@
     <!-- ===== EXPERIENCE ===== -->
     <section id="experience" class="section" aria-labelledby="t-exp" data-reveal>
       <h2 id="t-exp" class="h2">Experience</h2>
+      <!-- PARA AÑADIR UNA EXPERIENCIA:
+           Duplica <li class="tl-item">, cambia .tl-role, .tl-time, .tl-place y los <li> dentro de .tl-bullets -->
       <ol class="timeline" aria-label="Experience timeline">
         <li class="tl-item" data-reveal>
           <div class="tl-head"><span class="tl-role">Creator & Developer</span><span class="tl-time">2024 — present</span></div>
@@ -190,13 +201,15 @@
       <h2 id="t-proj" class="h2">Projects</h2>
       <p class="muted">Quick selection. Click a card to open.</p>
 
+      <!-- PARA AÑADIR UN PROYECTO:
+           Duplica el bloque <a class="card card-link">, ajusta el href, <h3>, <p> y los badges dentro de .tech -->
       <div class="projects">
         <a class="card card-link" href="https://maqui94.github.io/oposiciones-test/index.html" target="_blank" rel="noopener noreferrer nofollow">
           <h3>Civil Service • Test Web</h3>
           <p>Practice tests with exam / review / flashcards modes. No signup, focused and fast.</p>
           <div class="tech" style="margin:8px 0 10px">
             <span class="status st-progress" title="In progress">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4v8l6 3.5-1-1.73-5-2.77V2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4v8l6 3.5-1-1.73-5-2.77V2z"/></svg>
               In progress
             </span>
             <span class="tech-dot" title="Stack">Web</span>
@@ -208,7 +221,7 @@
           <p>Create multiple-choice questions from your PDFs with AI for quick, reusable quizzes.</p>
           <div class="tech" style="margin:8px 0 10px">
             <span class="status st-starting" title="Starting">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M8 5v14l11-7z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
               Starting
             </span>
             <span class="tech-dot" title="Stack">AI</span>
@@ -224,27 +237,27 @@
           <h2 id="t-contact" class="h2">Contact</h2>
           <p class="muted">DMs are open. Email works too.</p>
 
-          <!-- Redes: icono + texto (todos enlaces reales) -->
+          <!-- Redes (icono + texto). Nota: usamos Lucide (defer) para GitHub/LinkedIn/Instagram/Mail y SVG inline para Discord. -->
           <div class="actions socials">
             <a class="btn" href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer">
-              <i data-lucide="github"></i> GitHub
+              <i data-lucide="github" aria-hidden="true"></i> GitHub
             </a>
             <a class="btn" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer">
-              <i data-lucide="linkedin"></i> LinkedIn
+              <i data-lucide="linkedin" aria-hidden="true"></i> LinkedIn
             </a>
             <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">
-              <i data-lucide="instagram"></i> Instagram
+              <i data-lucide="instagram" aria-hidden="true"></i> Instagram
             </a>
-           <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer">
-  <!-- SVG Discord inline -->
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18">
-    <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.864-.608 1.249-1.844-.276-3.68-.276-5.486 0-.164-.393-.405-.874-.617-1.249a.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C2.2 9.045 1.5 13.579 1.84 18.057a.082.082 0 0 0 .031.056c2.052 1.503 4.041 2.419 5.993 3.029a.077.077 0 0 0 .084-.027c.461-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.105c-.652-.247-1.27-.545-1.872-.892a.077.077 0 0 1-.007-.127c.126-.094.252-.192.373-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.121.099.246.197.372.291a.077.077 0 0 1-.006.127 12.298 12.298 0 0 1-1.873.892.077.077 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028c1.961-.61 3.95-1.526 6.002-3.03a.078.078 0 0 0 .03-.055c.5-5.177-.83-9.673-3.548-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.182 0-2.157-1.12-2.157-2.496 0-1.376.955-2.496 2.157-2.496 1.21 0 2.176 1.12 2.157 2.496 0 1.376-.955 2.496-2.157 2.496zm7.975 0c-1.182 0-2.157-1.12-2.157-2.496 0-1.376.955-2.496 2.157-2.496 1.21 0 2.176 1.12 2.157 2.496 0 1.376-.955 2.496-2.157 2.496z"/>
-  </svg>
-  Discord
-</a>
+            <a class="btn" href="https://discord.gg/sEYHhqG9" target="_blank" rel="noopener noreferrer">
+              <!-- Discord: SVG inline (ligero y siempre consistente) -->
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18">
+                <path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515c-.034-.007-.07.01-.079.037-.211.375-.444.864-.608 1.249-1.844-.276-3.68-.276-5.486 0-.164-.393-.405-.874-.617-1.249a.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C2.2 9.045 1.5 13.579 1.84 18.057a.082.082 0 0 0 .031.056c2.052 1.503 4.041 2.419 5.993 3.029a.077.077 0 0 0 .084-.027c.461-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.105 12.01 12.01 0 0 1-1.872-.892.077.077 0 0 1-.007-.127c.126-.094.252-.192.373-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.121.099.246.197.372.291a.077.077 0 0 1-.006.127c-.582.347-1.2.645-1.873.892a.077.077 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028c1.961-.61 3.95-1.526 6.002-3.03a.078.078 0 0 0 .03-.055c.5-5.177-.83-9.673-3.548-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.182 0-2.157-1.12-2.157-2.496S6.838 10.338 8.02 10.338s2.157 1.12 2.157 2.496S9.202 15.33 8.02 15.33zm7.975 0c-1.182 0-2.157-1.12-2.157-2.496s.955-2.496 2.157-2.496 2.157 1.12 2.157 2.496-.955 2.496-2.157 2.496z"/>
+              </svg>
+              Discord
+            </a>
             <!-- mail se rellena por JS con href=mailto:... -->
             <a id="mail-link" class="btn" href="#" rel="noopener noreferrer">
-              <i data-lucide="mail"></i> Email
+              <i data-lucide="mail" aria-hidden="true"></i> Email
             </a>
           </div>
         </div>
@@ -267,19 +280,19 @@
         <a href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i data-lucide="github"></i></a>
         <a href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
         <a href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-        <a href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18">
-    <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.864-.608 1.249-1.844-.276-3.68-.276-5.486 0-.164-.393-.405-.874-.617-1.249a.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C2.2 9.045 1.5 13.579 1.84 18.057a.082.082 0 0 0 .031.056c2.052 1.503 4.041 2.419 5.993 3.029a.077.077 0 0 0 .084-.027c.461-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.105c-.652-.247-1.27-.545-1.872-.892a.077.077 0 0 1-.007-.127c.126-.094.252-.192.373-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.121.099.246.197.372.291a.077.077 0 0 1-.006.127 12.298 12.298 0 0 1-1.873.892.077.077 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028c1.961-.61 3.95-1.526 6.002-3.03a.078.078 0 0 0 .03-.055c.5-5.177-.83-9.673-3.548-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.182 0-2.157-1.12-2.157-2.496 0-1.376.955-2.496 2.157-2.496 1.21 0 2.176 1.12 2.157 2.496 0 1.376-.955 2.496-2.157 2.496zm7.975 0c-1.182 0-2.157-1.12-2.157-2.496 0-1.376.955-2.496 2.157-2.496 1.21 0 2.176 1.12 2.157 2.496 0 1.376-.955 2.496-2.157 2.496z"/>
-  </svg>
-</a>
+        <a href="https://discord.gg/sEYHhqG9" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18">
+          <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.864-.608 1.249-1.844-.276-3.68-.276-5.486 0-.164-.393-.405-.874-.617-1.249a.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C2.2 9.045 1.5 13.579 1.84 18.057a.082.082 0 0 0 .031.056c2.052 1.503 4.041 2.419 5.993 3.029a.077.077 0 0 0 .084-.027c.461-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.105c-.652-.247-1.27-.545-1.872-.892a.077.077 0 0 1-.007-.127c.126-.094.252-.192.373-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.121.099.246.197.372.291a.077.077 0 0 1-.006.127 12.298 12.298 0 0 1-1.873.892.077.077 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028c1.961-.61 3.95-1.526 6.002-3.03a.078.078 0 0 0 .03-.055c.5-5.177-.83-9.673-3.548-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.182 0-2.157-1.12-2.157-2.496 0-1.376.955-2.496 2.157-2.496 1.21 0 2.176 1.12 2.157 2.496 0 1.376-.955 2.496-2.157 2.496zm7.975 0c-1.182 0-2.157-1.12-2.157-2.496 0-1.376.955-2.496 2.157-2.496 1.21 0 2.176 1.12 2.157 2.496 0 1.376-.955 2.496-2.157 2.496z"/>
+          </svg>
+        </a>
         <a id="foot-mail" href="#" aria-label="Email"><i data-lucide="mail"></i></a>
       </nav>
     </div>
   </footer>
 
-  <!-- Icons (Lucide) -->
+  <!-- Icons (Lucide) – defer + inicialización en idle para no bloquear -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <!-- App -->
-  <script src="./assets/app.js?v=14" defer></script>
+  <script src="./assets/app.js?v=15" defer></script>
 </body>
 </html>
