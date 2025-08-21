@@ -60,14 +60,19 @@
   <main class="wrap">
     <!-- ===== HERO ===== -->
     <section id="start" class="hero-full" aria-label="Hero">
+      <!-- Confetti -->
       <div class="sparks" aria-hidden="true">
-        <!-- confetti spans (puedes reducir o aumentar sin tocar CSS) -->
+        <!-- 48 spans (puedes añadir más si quieres) -->
+        <!-- 1–12 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- 13–24 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- 25–36 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- 37–48 -->
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
@@ -119,14 +124,9 @@
         <figure class="about-photo polaroid" aria-label="Photo of Adrián Maquirriain">
           <span class="tape t1" aria-hidden="true"></span>
           <span class="tape t2" aria-hidden="true"></span>
-
           <picture>
             <source srcset="./assets/avatar.webp" type="image/webp">
-            <img
-              src="./assets/avatar.webp"
-              alt="Adrián Maquirriain (Maquidev)"
-              width="420" height="525"
-              loading="lazy" decoding="async">
+            <img src="./assets/avatar.webp" alt="Adrián Maquirriain (Maquidev)" width="420" height="525" loading="lazy" decoding="async">
           </picture>
           <figcaption>
             <strong>Adrián Maquirriain</strong>
@@ -214,32 +214,29 @@
           <h2 id="t-contact" class="h2">Contact</h2>
           <p class="muted">DMs are open. Email works too.</p>
 
-          <!-- Redes + iconos -->
+          <!-- Redes: icono + texto (todos enlaces reales) -->
           <div class="actions socials">
-            <a class="btn" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer">
-              <i class="icon" data-lucide="linkedin"></i> LinkedIn
+            <a class="btn" href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="github"></i> GitHub
             </a>
-            <button class="btn" id="btn-github" type="button">
-              <i class="icon" data-lucide="github"></i> GitHub
-            </button>
+            <a class="btn" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="linkedin"></i> LinkedIn
+            </a>
             <a class="btn" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">
-              <i class="icon" data-lucide="instagram"></i> Instagram
+              <i data-lucide="instagram"></i> Instagram
             </a>
             <a class="btn" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener noreferrer">
-              <i class="icon" data-lucide="message-circle"></i> Discord
+              <i data-lucide="discord"></i> Discord
             </a>
-            <button id="btn-mail-2" class="btn" type="button">
-              <i class="icon" data-lucide="mail"></i> Email
-            </button>
+            <!-- mail se rellena por JS con href=mailto:... -->
+            <a id="mail-link" class="btn" href="#" rel="noopener noreferrer">
+              <i data-lucide="mail"></i> Email
+            </a>
           </div>
         </div>
 
         <figure class="contact-ill">
-          <img
-            src="./assets/maquidev-contacta.png"
-            alt="Cartoon illustration for contact"
-            width="640" height="640"
-            loading="lazy" decoding="async">
+          <img src="./assets/maquidev-contacta.png" alt="Cartoon illustration for contact" width="640" height="640" loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -251,19 +248,17 @@
         <a class="brand-link" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer">@maquidev</a>
         · <a href="#start" class="toplink">Back to top ↑</a>
       </div>
-
       <!-- Solo iconos -->
-      <nav class="foot-socials" aria-label="Social links">
-        <a class="link icon-only" href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="icon" data-lucide="linkedin"></i></a>
-        <a id="f-github" class="link icon-only" href="#" role="link" title="GitHub" aria-label="GitHub"><i class="icon" data-lucide="github"></i></a>
-        <a class="link icon-only" href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="icon" data-lucide="instagram"></i></a>
-        <a class="link icon-only" href="https://discord.gg/g5mZFQry" target="_blank" rel="noopener" title="Discord" aria-label="Discord"><i class="icon" data-lucide="message-circle"></i></a>
-        <a id="f-mail" class="link icon-only" href="#" role="link" title="Email" aria-label="Email"><i class="icon" data-lucide="mail"></i></a>
+      <nav class="foot-socials">
+        <a href="https://github.com/maqui94" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i data-lucide="github"></i></a>
+        <a href="https://www.linkedin.com/in/adrian-maquirriain-82b9a0269/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="https://www.instagram.com/maquidev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a id="foot-mail" href="#" aria-label="Email"><i data-lucide="mail"></i></a>
       </nav>
     </div>
   </footer>
 
-  <!-- Lucide icons -->
+  <!-- Icons (Lucide) -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <!-- App -->
   <script src="./assets/app.js?v=14" defer></script>
